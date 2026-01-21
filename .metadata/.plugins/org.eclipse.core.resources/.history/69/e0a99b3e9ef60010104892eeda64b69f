@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>영화 예매 페이지</title>
+</head>
+<body>
+	<h2>영화 예매</h2>
+	<form>
+		<input type="text" name="movieTitle" placeholder="" />
+	</form>
+</body>
+</html>

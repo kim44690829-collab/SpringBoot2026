@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>도서 대여</title>
+</head>
+<body>
+	<h2>도서 대여 정보를 입력하세요.</h2>
+	<input type="text" name="bookName" placeholder="대여하신 책이름을 입력하세요." />
+	<input type="text" name="author" placeholder="책의 저자를 입력하세요." />
+	<input type="text" name="bookISBN" placeholder="ISBN을 입력하세요." />
+	<input type="text" name="name" placeholder="대여자명을 입력하세요." />	
+</body>
+</html>

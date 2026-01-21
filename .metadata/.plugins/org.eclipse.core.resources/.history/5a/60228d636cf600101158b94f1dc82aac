@@ -1,0 +1,20 @@
+package com.example.demo;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+// Greeting 클래스는 Controller의 역할을 하도록 명령
+@Controller // @Controller는 Controller라는 Bean객체가 생성되도록 하는 어노테이션 처리
+public class Greeting {
+	
+	// 메서드
+	@GetMapping("/") // http://localhost:8090/ => 홈페이지
+	public String greet() {
+		System.out.println("greet()");
+		// application.properties의 spring.thymeleaf.suffix=.html 로 인해 꼬리말에 .html이 붙는다.
+		return "home"; // home.html => 페이지 이름을 반환
+		// 반환된 home.html의 경로는 
+		// application.properties의 spring.thymeleaf.prefix=classpath:/templates/ 로 인해
+		// classpath:/templates/ 안에 존재해야한다.
+	}
+}

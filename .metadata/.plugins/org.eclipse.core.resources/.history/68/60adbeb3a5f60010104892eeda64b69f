@@ -1,0 +1,26 @@
+package com.green.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class RestaurantControll {
+
+	@GetMapping("/restaurant/booking")
+	public String booking() {
+		return "restaurantBooking";
+	}
+	
+	@PostMapping("/restaurant/bookingComplete")
+	public String bookingComplete(
+			@RequestParam("guestName") String guestName,
+			@RequestParam("phone") String phone,
+			@RequestParam("bookingDate") String bookingDate,
+			@RequestParam("bookingTime") String bookingTime,
+			@RequestParam("partySize") String partySize,
+			) {
+		
+	}
+}

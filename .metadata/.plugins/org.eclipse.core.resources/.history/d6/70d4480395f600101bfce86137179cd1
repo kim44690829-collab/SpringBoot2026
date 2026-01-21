@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>도서 대여 정보</title>
+</head>
+<body>
+	<h2>도서 대여 정보</h2>
+	<!-- 
+		<ul>
+			<li th:each="bookName : ${bookNames}" th:text="${bookName}"></li>
+			<li th:each="author : ${author}" th:text="${author}"></li>
+			<li th:each="isbn : ${isbn}" th:text="${isbn}"></li>
+			<li th:each="rentalName : ${rentalName}" th:text="${rentalName}"></li>
+		</ul>
+	 -->
+	
+	<!-- 
+	<p>도서명 : <span th:text="${bookName}"></span></p>
+	<p>저자 : <span th:text="${author}"></span></p>
+	<p>ISBN : <span th:text="${isbn}"></span></p>
+	<p>대여자 : <span th:text="${rentalName}"></span></p>
+	 -->
+	
+</body>
+</html>

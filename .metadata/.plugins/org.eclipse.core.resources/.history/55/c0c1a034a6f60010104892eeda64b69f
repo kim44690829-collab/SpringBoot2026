@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>예약이 완료되었습니다.</p>
+	<p>예약자명 : <span></span> </p>
+	
+</body>
+</html>

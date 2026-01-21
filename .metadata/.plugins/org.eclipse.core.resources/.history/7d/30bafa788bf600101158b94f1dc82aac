@@ -1,0 +1,6 @@
+package controller;
+
+@ProjectController
+public class ProjectController {
+
+}

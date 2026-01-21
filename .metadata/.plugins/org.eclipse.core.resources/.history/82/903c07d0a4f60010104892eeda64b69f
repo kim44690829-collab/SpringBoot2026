@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>예약 정보를 입력해주세요.</h2>
+	<form>
+		<input type="text" name="guestName" placeholder="예약자 명을 입력해주세요." />
+		<input type="tel" name="phone" placeholder="핸드폰 번호를 입력해주세요." />
+		<input type="date" name="bookingDate" placeholder="예약자 날짜를 입력해주세요." />
+		<input type="time" name="bookingTime" placeholder="예약자 시간을 입력해주세요." />
+		<input type="text" name="partySize" placeholder="인원 수를 입력해주세요." />
+		
+	</form>
+</body>
+</html>

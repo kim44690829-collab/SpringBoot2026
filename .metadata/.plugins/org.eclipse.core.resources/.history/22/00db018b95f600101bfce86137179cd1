@@ -1,0 +1,24 @@
+package com.green.controller;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+public class BookPro {
+	String bookNames;
+	String authors;
+	String isbns;
+	String rentalNames;
+	
+	public BookPro() {}
+	
+	public BookPro(
+			@RequestParam("bookName") String bookNames,
+			@RequestParam("author") String authors,
+			@RequestParam("isbn") String isbns,
+			@RequestParam("rentalName") String rentalNames
+			) {
+		this.bookNames = bookNames;
+		this.authors = authors;
+		this.isbns = isbns;
+		this.rentalNames = rentalNames;		
+	}
+}
