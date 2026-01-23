@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>축하합니다! 정답입니다!</h1>
+	<p th:if="${msg}" th:text="${msg}"></p>
+	<a href="/quiz">다시 테스트 하기</a>
+</body>
+</html>

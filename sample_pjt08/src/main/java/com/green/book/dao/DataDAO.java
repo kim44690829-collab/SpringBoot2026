@@ -14,6 +14,22 @@ public class DataDAO {
 	private Map<String, MemberDTO> memberDB = new HashMap<>();
 	private Map<String, BookDTO> bookDB = new HashMap<>();
 
+	public Map<String, MemberDTO> getMemberDB() {
+		return memberDB;
+	}
+
+	public void setMemberDB(Map<String, MemberDTO> memberDB) {
+		this.memberDB = memberDB;
+	}
+
+	public Map<String, BookDTO> getBookDB() {
+		return bookDB;
+	}
+
+	public void setBookDB(Map<String, BookDTO> bookDB) {
+		this.bookDB = bookDB;
+	}
+
 	// member 추가하는 메서드
 	public void insertMember(MemberDTO mdto) {
 		System.out.println("member insert");

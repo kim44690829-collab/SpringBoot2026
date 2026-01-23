@@ -23,7 +23,7 @@ public class MemberController {
 		}
 		
 		// 회원가입 완료 화면
-		@GetMapping("/signupResult")
+		@PostMapping("/signupResult")
 		public String signupResult(MemberDTO mdto, Model model) {
 			memberS.signupConfirm(mdto);
 			model.addAttribute("id", mdto.getUserId());

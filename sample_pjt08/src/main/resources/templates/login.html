@@ -6,9 +6,9 @@
 </head>
 <body>
 	<h2>abc 도서관에 오신걸 환영합니다.</h2>
-	<form th:action="@{/book/login/loginResult}" method="POST">
-		<input type="text" name="id" placeholder="아이디를 입력해주세요." /><br/>
-		<input type="text" name="pw" placeholder="비밀번호를 입력해주세요." /><br/>
+	<form th:action="@{/loginResult}" method="POST">
+		<input type="text" name="userId" placeholder="아이디를 입력해주세요." /><br/>
+		<input type="text" name="userPw" placeholder="비밀번호를 입력해주세요." /><br/>
 		<input type="submit" value="로그인" />
 	</form>
 </body>

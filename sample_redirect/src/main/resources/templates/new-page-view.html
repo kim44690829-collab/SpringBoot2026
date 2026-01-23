@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>new page입니다아아아</h2>
+	<!-- th:if => ${msg}가 존재하면 th:text="${msg}"를 출력해라  -->
+	<!-- th:if => ${msg}가 존재하지 않으면 p태그 자동 삭제  -->
+	<!-- re.addFlashAttribute("msg", "이전 주소에서 자동으로 이동되었습니다.") 의  -->
+	<p th:if="${msg}" th:text="${msg}" id="msg"></p>
+	
+	<!-- <script>
+		// let msg = "${msg}";
+		let msg = document.getElementById("msg");
+		aleat(msg);
+	</script> -->
+</body>
+</html>

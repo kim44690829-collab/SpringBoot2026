@@ -6,11 +6,14 @@
 </head>
 <body>
 	<h2>책을 대여하시려면 아래 정보를 입력해주세요.</h2>
-	<form th:action="@{/book/rentalInfo}" method="POST">
-		<input type="text" name="bookName" placeholder="대여하실 책 제목을 입력해주세요." /><br/>
-		<input type="text" name="auther" placeholder="책 저자를 입력해주세요." /><br/>
-		<input type="text" name="isbn" placeholder="isbn을 입력해주세요." /><br/>
-		<input type="text" name="rentalName" placeholder="대여자 명을 입력해주세요." /><br/>
+	<form th:action="@{/rentalInfo}" method="POST">
+		대여할 책 : <input type="text" name="bookName" placeholder="대여하실 책 제목을 입력해주세요." /><br/>
+		책 저자 : <input type="text" name="auther" placeholder="책 저자를 입력해주세요." /><br/>
+		isbn : <input type="text" name="isbn" placeholder="isbn을 입력해주세요." /><br/>
+		대여 날짜 : <input type="date" name="rentalBook"/><br/>
+		반납 날짜 : <input type="date" name="returnBook">	<br/>
+		대여자 명 : <input type="text" name="rentalName" placeholder="대여자 명을 입력해주세요." /><br/>
+		대여자 아이디 : <input type="text" name="userId" placeholder="대여자 아이디를 입력해주세요." /><br/>
 		<input type="submit" value="대여" />
 	</form>
 </body>
