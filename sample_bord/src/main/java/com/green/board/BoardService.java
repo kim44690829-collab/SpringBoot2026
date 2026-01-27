@@ -9,9 +9,9 @@ public class BoardService {
 	@Autowired
 	BoardDAO boarddao;
 	
-	public boolean writeBoard(BoardDTO bdto) {
+	public void writeBoard(BoardDTO bdto) {
 		System.out.println("BoardService : writeBoard() 메서드 확인");
-		return boarddao.insertBoard(bdto) == 1;
+		boarddao.insertBoard(bdto);
 	}
 	
 }

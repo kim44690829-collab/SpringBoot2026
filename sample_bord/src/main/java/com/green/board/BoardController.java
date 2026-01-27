@@ -2,6 +2,7 @@ package com.green.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -12,8 +13,16 @@ public class BoardController {
 	BoardService boardservice;
 	
 	@GetMapping("/board/list")
-	public String boardList() {
+	public String boardList(BoardDTO bdto, Model model) {
 		System.out.println("BoardController : boardList() 메서드 확인");
+		
+		boardservice.writeBoard(bdto);
+		
+		model.addAttribute("id",bdto.getId());
+		model.addAttribute("title",bdto.getTitle());
+		model.addAttribute("writer",bdto.getWriter());
+		model.addAttribute("createdAt",bdto.getCreatedAt());
+		
 		String nextPage = "board/boardMain";
 		return nextPage;
 	}
@@ -25,15 +34,4 @@ public class BoardController {
 		return nextPage;
 	}
 
-	@GetMapping("/board/write")
-	public String writeConfirm(BoardDTO bdto, RedirectAttributes rea) {
-		System.out.println("BoardController : writeConfirm() 메서드 확인");
-		boolean result = boardservice.writeBoard(bdto);
-		if(result) {
-			return "redirect:/board/list";
-		}else {
-			rea.addFlashAttribute("msg", "게시판 작성 실패");
-			return "redirect:/board/write";
-		}
-	}
 }
