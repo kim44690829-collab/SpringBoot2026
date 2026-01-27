@@ -30,6 +30,7 @@ public class MemberService {
 	
 	// 회원 전체 목록 출력하는 메서드
 	public List<MemberDTO> memberAll(){
+		System.out.println("MemberService : memberAll() 매서드 확인");
 		return memberdao.allSelectMember();
 	}
 	
@@ -54,5 +55,74 @@ public class MemberService {
 			return user_id_already_exit; // 중복 아이디 -> result = 0;
 		}
 	}
+	
+	// --------------------------------- 2026-01-27 서비스 로직 작성--------------------------------------------------
+	// 한 사람의 정보를 검색하는 서비스로직
+	public MemberDTO oneSelect(String id) {
+		System.out.println("MemberService : oneSelect() 매서드 확인");
+		return memberdao.oneSelectMember(id);
+	}
+	
+	// 한 사람의 패스워드만 출력하는 메서드
+	public String onePass(String id) {
+		System.out.println("MemberService : onePass() 매서드 확인");
+		// void가 아닌 이상 데이터 타입이 존재한다는 것은 return이 필요함
+		return memberdao.getPass(id);
+	}
+	
+	// 개인 한 사람의 정보를 수정하는 메서드
+	// DB의 패스워드와 같은지 비교
+	// DB의 패스워드와 내가 입력한 패스워드가 같다 => 실행문
+	// DB의 패스워드와 내가 입력한 패스워드가 다르다 => 실행문
+	public boolean modifyMember(MemberDTO mdto) {
+		System.out.println("MemberService : modifyMember() 매서드 확인");
+		
+		// 1. DB 조회
+		String DBpass = memberdao.getPass(mdto.getId());
+		
+		if(DBpass.equals(mdto.getPw()) && DBpass != null) {
+			// 내가 입력한 패스워드가 DB에 존재한다.
+			return memberdao.updateMember(mdto) == 1;
+		}else {
+			// 내가 입력한 패스워드가 DB에 존재하지 않을때
+			return false;
+		}
+	}
+	
+	// 한 회원의 정보만 삭제하는 메서드
+	public boolean oneDelete(String id) {
+		System.out.println("MemberService : oneDelete() 매서드 확인");
+		// 현재 deleteMember()라는 DAO의 결과값이 result에 0(삭제안됨) or 1(삭제됨) 로 담긴다.
+		// memberdao.deleteMember(id) => 1(삭제됨) == 1 => 삭제됐다. (true)
+		return memberdao.deleteMember(id) == 1;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

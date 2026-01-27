@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판</title>
+</head>
+<body>
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word"><h1>board</h1></div>
+			<div class="content">
+				<table>
+					<thead>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+					</thead>
+					<tbody>
+					<!-- th:each 이용해서 반복 -->
+						<tr>
+							<td>1</td>
+							<td>1</td>
+							<td>1</td>
+							<td>1</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a th:href="@{/board/write}">게시글 쓰기</a>
+		</div>
+	</section>
+	
+	<footer th:replace="~{/include/header_footer.html::footer}"></footer>
+</body>
+</html>

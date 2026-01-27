@@ -30,7 +30,11 @@
 						</tr>
 						<tr th:each="li:${list}">
 							<td th:text="${li.no}"></td>
-							<td th:text="${li.id}"></td>
+							<td>
+							<!-- a th:href="@{/member/memberInfo(id=${li.id})}" => GET방식으로 전송한것 -->
+								<a th:href="@{/member/memberInfo(id=${li.id})}"
+								th:text="${li.id}"></a>
+							</td>
 							<td th:text="${li.pw}"></td>
 							<td th:text="${li.mail}"></td>
 							<td th:text="${li.phone}"></td>
@@ -44,5 +48,8 @@
 	</section>
 	
 	<footer th:replace="~{/include/header_nav_footer.html::footer}" ></footer>
+	<script th:if="${msg}" >
+		alert('[[${msg}]]');
+	</script>
 </body>
 </html>

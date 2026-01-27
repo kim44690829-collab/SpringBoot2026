@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:fragment="header">
+		<div id="top">
+			<h3>게시판입니다!</h3>
+		</div>
+		<div id="header_wrap">
+			<a th:href="@{/}">Home</a>
+			<a th:href="@{/board/list}">게시판</a>			
+		</div>
+	</header>
+	<footer th:fragment="footer">
+		<div id="btm">
+			<h3>footer 입니다.</h3>
+		</div>
+	</footer>
+</body>
+</html>

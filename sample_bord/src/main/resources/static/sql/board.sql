@@ -1,0 +1,7 @@
+CREATE TABLE board(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content VARCHAR(1000) NOT NULL,
+    writer VARCHAR(30) NOT NULL,
+    createdAt DATETIME DEFAULT now()
+)

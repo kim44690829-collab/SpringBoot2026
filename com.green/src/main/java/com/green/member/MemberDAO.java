@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import com.green.HomeController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -102,12 +103,117 @@ public class MemberDAO {
 		return list;
 	}
 	
+	// --------------------------------- 2026-01-27 추가쿼리 작성--------------------------------------------------
+	// 개인 한 사람의 정보를 검색하는 메서드
+	public MemberDTO oneSelectMember(String id) {
+		// log
+		System.out.println("MemberDAO : oneSelectMember() 매서드 확인");
+		// 반환받을 MemberDTO 객체 생성
+		MemberDTO mdto = new MemberDTO();
+		// sql 구문 작성
+		String sql = "SELECT * FROM user_member WHERE id = ?";
+		
+		// 예외처리 try(자동 close()를 위해 connection 설정){} ~ catch(){}
+		try(
+				Connection conn = dataSource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			// 실행구문
+			// ? 대응을 먼저 작성해야한다.
+			// ? => input에서 입력받을 값
+			pstmt.setString(1, id);
+			// select 문은 반드시 ResultSet 객체에 담는다.
+			ResultSet rs = pstmt.executeQuery();
+			// mdto.setId(~~) 담는다.
+			// rs.next() 없이 값을 꺼내오면 항상 빈 DTO임 
+			if(rs.next()) {
+				mdto.setNo(rs.getInt("no"));
+				mdto.setId(rs.getString("id"));
+				mdto.setPw(rs.getString("pw"));
+				mdto.setMail(rs.getString("mail"));
+				mdto.setPhone(rs.getString("phone"));
+				mdto.setReg_date(rs.getString("reg_date"));
+				mdto.setMod_date(rs.getString("mod_date"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return mdto;
+	}
 	
+	// 개인 한사람의 정보 수정
+	public int updateMember(MemberDTO mdto) {
+		System.out.println("MemberDAO : updateMember() 매서드 확인");
+		int result = 0;
+		
+		String sql = "UPDATE user_member SET mail = ?, phone = ? WHERE id = ?";
+		
+		try(
+				Connection conn = dataSource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			// ? 3개 대응
+			pstmt.setString(1, mdto.getMail());
+			pstmt.setString(2, mdto.getPhone());
+			pstmt.setString(3, mdto.getId());
+			result = pstmt.executeUpdate();
+			System.out.println("UPDATE result : " + result);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
+	// 개인 한 사람의 패스워드 리턴하는 쿼리
+	public String getPass(String id) {
+		System.out.println("MemberDAO : getPass() 매서드 확인");
+		String pass="";
+		String sql = "SELECT pw FROM user_member WHERE id = ?";
+		
+		try(
+				Connection conn = dataSource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			// ? 대응
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pass = rs.getString(1); // 패스워드 값에 저장된 매핑 인덱스
+			}
+			System.out.println("getPass pw : " + pass);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return pass;
+	}
 	
-	
-	
-	
+	// 한 사람 개인의 정보를 삭제하는 메서드 작성
+	public int deleteMember(String id) {
+		int result = 0;
+		
+		String sql = "DELETE FROM user_member WHERE id = ?";
+		
+		try(
+				Connection conn = dataSource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			// ? 대응
+			pstmt.setString(1, id);
+			// 쿼리문 실행할때 
+			// executeUpdate()는 delete, insert, update 가 사용
+			// executeQuery()는 select가 사용
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
 	
 	
 	

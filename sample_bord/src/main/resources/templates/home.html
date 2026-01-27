@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>HOME</title>
+</head>
+<body>
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word"><h1>HOME</h1></div>
+			<div class="content">
+				<img th:src="@{/img/MainImg.jpg}" alt="mainImg" />
+			</div>
+		</div>
+	</section>
+	
+	<footer th:replace="~{/include/header_footer.html::footer}"></footer>
+</body>
+</html>
