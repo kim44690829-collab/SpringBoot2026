@@ -2,6 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<script th:src="@{/js/board.js}"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -11,7 +12,7 @@
 		<div id="section_wrap">
 			<div class="word"><h1>게시글 작성</h1></div>
 			<div class="content">
-				<form th:action="@{/board/list}" method="GET">
+				<form th:action="@{/board/list}" method="GET" name="board_form">
 					<table>
 						<tr>
 							<td>
@@ -29,7 +30,8 @@
 							</td>
 						</tr>
 					</table>
-					<button type="submit">작성 완료</button>
+					<input type="button" value="작성완료" onclick="boardForm();">
+					
 				</form>
 			</div>
 		</div>

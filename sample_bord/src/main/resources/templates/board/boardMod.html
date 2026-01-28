@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	
+	<section>
+		<div id="section_wrap">
+			<div class="word"><h1>board</h1></div>
+			<div class="content">
+				<form th:action="@{/board/modify(id=${oneBoard.id})}" method="POST">
+					<table>
+						<tr>
+							<td>
+								<input type="text" name="title" th:value="${oneBoard.title}" />
+							</td>
+						</tr>
+						<tr>
+							<td th:text="${oneBoard.createdAt}"></td>
+						</tr>
+						<tr>
+							<td th:text="${oneBoard.writer}"></td>
+						</tr>
+						<tr>
+							<td>
+								<textarea cols="100" rows="10" name="content" th:text="${oneBoard.content}"></textarea>
+							</td>
+						</tr>
+					</table>
+					<button type="submit" >수정 완료</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	
+	<footer th:replace="~{/include/header_footer.html::footer}"></footer>
+</body>
+</html>

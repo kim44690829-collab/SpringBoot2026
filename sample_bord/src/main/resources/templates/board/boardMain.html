@@ -20,11 +20,13 @@
 					</thead>
 					<tbody>
 					<!-- th:each 이용해서 반복 -->
-						<tr>
-							<td th:text="${id}"></td>
-							<td th:text="${title}"></td>
-							<td th:text="${writer}"></td>
-							<td th:text="${createdAt}"></td>
+						<tr th:each="li, stat : ${list}">
+							<td th:text="${stat.count}"></td>
+							<td>
+								<a th:href="@{/board/oneboard(id=${li.id})}" th:text="${li.title}" ></a>
+							</td>
+							<td th:text="${li.writer}"></td>
+							<td th:text="${li.createdAt}"></td>
 						</tr>
 					</tbody>
 				</table>
