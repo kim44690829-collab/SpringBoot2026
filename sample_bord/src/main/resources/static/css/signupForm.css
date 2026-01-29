@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* ================= 회원가입 section ================= */
+section {
+    width: 100%;
+    padding: 60px 0;
+    background-color: #f5f6f7;
+}
+
+#section_wrap {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* 타이틀 */
+.boardWord {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.boardWord h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* 컨텐츠 카드 */
+.boardContent {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 */
+.boardContent table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.boardContent tr {
+    border-bottom: 1px solid #eee;
+}
+
+.boardContent td {
+    padding: 14px 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* 라벨 */
+.boardContent label {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* input 공통 */
+.boardContent input[type="text"],
+.boardContent input[type="password"],
+.boardContent input[type="email"],
+.boardContent input[type="tel"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* 포커스 효과 */
+.boardContent input:focus {
+    border-color: #2c3e50;
+}
+
+/* 버튼 */
+.boardContent input[type="button"] {
+    display: block;
+    margin: 30px auto 0;
+    padding: 14px 40px;
+    background-color: #2c3e50;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.boardContent input[type="button"]:hover {
+    background-color: #1a252f;
+    transform: translateY(-2px);
+}

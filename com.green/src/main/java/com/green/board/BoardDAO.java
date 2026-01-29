@@ -147,6 +147,105 @@ public class BoardDAO {
 		
 		return bdto;
 	}
+	
+	// 검색 버튼 클릭시 검색어가 포함된 게시글 select
+	// 검색 메서드 => searchType, searchKeyWord 매개변수 반드시 필요 => 공식
+	public List<BoardDTO> getSearchBoard(String searchType, String searchKeyWord){
+		System.out.println("2. BoardDAO : getSearchBoard() 메서드 호출");
+		// 인스턴스화 (리스트)
+		List<BoardDTO> blist = new ArrayList<>();
+		
+		// sql 구문
+		String sql = "";
+		if("subject".equals(searchType)) {
+			// subject
+			// 입력한 문자를 포함하는 검색 명령어
+			// SELECT 필드명 FROM 테이블명 WHERE 검색 필드명 LIKE %키워드%;
+			sql = "SELECT * FROM board WHERE subject LIKE ? ORDER BY num DESC";
+		}else {
+			// content
+			sql = "SELECT * FROM board WHERE content LIKE ? ORDER BY num DESC";
+		}
+		
+		try(
+				Connection conn = datasource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			// ? 대응
+			pstmt.setString(1, "%" + searchKeyWord + "%");
+			
+			// select문은 ResultSet 에 담는다.
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO bdto = new BoardDTO();
+				bdto.setNum(rs.getInt("num"));
+				bdto.setWriter(rs.getString("writer"));
+				bdto.setSubject(rs.getString("subject"));
+				bdto.setWriterPw(rs.getString("writerPw"));
+				bdto.setReg_date(rs.getString("reg_date"));
+				bdto.setReadcount(rs.getInt("readcount"));
+				bdto.setContent(rs.getString("content"));
+				
+				// blist에 add
+				blist.add(bdto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return blist;
+	}
+	
+	
+	// 내가 쓴 코드
+//	public List<BoardDTO> searchSelect(String subject, String content){
+//		System.out.println("2. BoardDAO : searchSelect() 메서드 호출");
+//		List<BoardDTO> searchList = new ArrayList<>(); // 제목 검색시 담는 리스트
+//		String sql = "SELECT * FROM board WHERE subject LIKE %?%"; // 제목 검색 쿼리
+//		String sql2 = "SELECT * FROM board WHERE content LIKE %?%"; // 내용 검색 쿼리
+//		
+//		try(Connection conn = datasource.getConnection();){
+//			try(PreparedStatement pstmt = conn.prepareStatement(sql);){ // 제목 검색 try~catch
+//				pstmt.setString(1, subject);
+//				ResultSet rs = pstmt.executeQuery();
+//				
+//				while(rs.next()) {
+//					BoardDTO bdto = new BoardDTO();
+//					bdto.setNum(rs.getInt("num"));
+//					bdto.setWriter(rs.getString("writer"));
+//					bdto.setSubject(rs.getString("subject"));
+//					bdto.setWriterPw(rs.getString("writerPw"));
+//					bdto.setReg_date(rs.getString("reg_date"));
+//					bdto.setReadcount(rs.getInt("readcount"));
+//					bdto.setContent(rs.getString("content"));
+//					
+//					searchList.add(bdto);
+//				}
+//			}
+//			
+//			try(PreparedStatement pstmt = conn.prepareStatement(sql2);){ // 내용 검색 try~catch
+//				pstmt.setString(1, content);
+//				ResultSet rs = pstmt.executeQuery();
+//				while(rs.next()) {
+//					BoardDTO bdto2 = new BoardDTO();
+//					bdto2.setNum(rs.getInt("num"));
+//					bdto2.setWriter(rs.getString("writer"));
+//					bdto2.setSubject(rs.getString("subject"));
+//					bdto2.setWriterPw(rs.getString("writerPw"));
+//					bdto2.setReg_date(rs.getString("reg_date"));
+//					bdto2.setReadcount(rs.getInt("readcount"));
+//					bdto2.setContent(rs.getString("content"));
+//					
+//					searchList.add(bdto2);
+//				}
+//			}
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return searchList;
+//	}
+	
 	// select 끝 update 시작--------------------------------------------------------------------------------------------
 	// 하나의 게시글을 수정하는 메서드
 	public int updateBoard(BoardDTO bdto) {
@@ -177,9 +276,28 @@ public class BoardDAO {
 		return result;
 	}
 	
+	// update 끝 delete 시작--2026-01-29-----------------------------------------------------------------------
 	
-	
-	
+	// 게시글 작성시 비밀번호를 입력하였기때문에 삭제시에도 비밀번호와 번호가 일치하는지 체크
+	public int deleteBoard(int num, String writerPw) {
+		System.out.println("2. BoardDAO : deleteBoard() 메서드 호출");
+		int result = 0;
+		String sql = "DELETE FROM board WHERE num = ? AND writerPw = ?";
+		
+		try(
+				Connection conn = datasource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			pstmt.setInt(1, num);
+			pstmt.setString(2, writerPw);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 	

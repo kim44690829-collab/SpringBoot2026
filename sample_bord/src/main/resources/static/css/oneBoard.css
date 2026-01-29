@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* ================= 게시글 상세 section ================= */
+section {
+    width: 100%;
+    padding: 60px 0;
+    background-color: #f5f6f7;
+}
+
+#section_wrap {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 타이틀 */
+.oneBoardWord {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.oneBoardWord h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* 컨텐츠 박스 */
+.oneBoardContent {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 */
+.oneBoardContent table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.oneBoardContent tr {
+    border-bottom: 1px solid #eee;
+}
+
+.oneBoardContent td {
+    padding: 15px;
+    text-align: left;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 제목 강조 (첫 줄) */
+.oneBoardContent tr:first-child td {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* 내용 영역 */
+.oneBoardContent tr:last-child td {
+    min-height: 200px;
+    white-space: pre-wrap; /* 줄바꿈 유지 */
+}
+
+/* ================= 버튼 영역 ================= */
+.oneBoardContent a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* 수정 */
+.oneBoardContent a:nth-of-type(1) {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* 삭제 */
+.oneBoardContent a:nth-of-type(2) {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+/* 목록 */
+.oneBoardContent a:nth-of-type(3) {
+    background-color: #7f8c8d;
+    color: #fff;
+}
+
+/* hover */
+.oneBoardContent a:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}

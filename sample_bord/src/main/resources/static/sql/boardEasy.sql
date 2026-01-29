@@ -1,0 +1,15 @@
+CREATE TABLE boardEasy(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    content VARCHAR(1000) NOT NULL,
+    writer VARCHAR(30) NOT NULL,
+    createdAt DATETIME DEFAULT now()
+);
+
+CREATE TABLE memberEasy(
+	num INT AUTO_INCREMENT PRIMARY KEY,
+    userId VARCHAR(20) NOT NULL,
+    userPw VARCHAR(100) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);

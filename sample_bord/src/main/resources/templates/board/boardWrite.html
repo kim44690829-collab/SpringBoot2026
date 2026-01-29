@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<link rel="stylesheet" th:href="@{/css/boardForm.css}">
 <script th:src="@{/js/board.js}"></script>
 <title>Insert title here</title>
 </head>
@@ -10,28 +12,27 @@
 
 	<section>
 		<div id="section_wrap">
-			<div class="word"><h1>게시글 작성</h1></div>
-			<div class="content">
-				<form th:action="@{/board/list}" method="GET" name="board_form">
-					<table>
-						<tr>
-							<td>
+			<div class="boardWord"><h1>게시글 작성</h1></div>
+			<div class="boardContent">
+				<form th:action="@{/board/listPro}" method="POST" name="board_form">
+					<table width="500">
+						<tr height="50">
+							<td width="150" align="center">
 								<input type="text" name="title" placeholder="글 제목을 입력해주세요." />
 							</td>
 						</tr>
-						<tr>
-							<td>
+						<tr  height="50">
+							<td width="150" align="center">
 								<input type="text" name="writer" placeholder="작성자를 입력해주세요." />
 							</td>
 						</tr>
-						<tr>
-							<td>
+						<tr  height="50">
+							<td width="150" align="center">
 								<textarea cols="100" rows="10" name="content"></textarea>
 							</td>
 						</tr>
 					</table>
 					<input type="button" value="작성완료" onclick="boardForm();">
-					
 				</form>
 			</div>
 		</div>

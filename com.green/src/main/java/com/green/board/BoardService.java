@@ -29,6 +29,15 @@ public class BoardService {
 		return boardDao.getOneBoard(num);
 	}
 	
+	// 게시글 검색하는 메서드
+	public List<BoardDTO> searchBoard(String searchType, String searchKeyWord){
+		System.out.println("3. BoardService : searchBoard() 메서드 호출");
+		System.out.println("3. searchType : " + searchType );
+		System.out.println("3. searchKeyWord : " + searchKeyWord );
+		
+		return boardDao.getSearchBoard(searchType, searchKeyWord);
+	}
+	
 	// 하나의 게시글을 수정하는 메서드
 	public boolean modifyBoard(BoardDTO bdto) {
 		System.out.println("3. BoardService : modifyBoard() 메서드 호출");
@@ -40,6 +49,20 @@ public class BoardService {
 			return true;
 		}else {
 			System.out.println("게시글 수정 실패");
+			return false;
+		}
+	}
+	
+	// 게시글 하나를 삭제하는 메서드
+	public boolean removeBoard(int num, String writerPw) {
+		System.out.println("3. BoardService : removeBoard() 메서드 호출");
+		// DAO에서 받아오는 deleteBoard()는 삭제되었으면 1, 아니면 0
+		int result = boardDao.deleteBoard(num, writerPw);
+		if(result > 0) {
+			System.out.println("게시글 삭제 성공");
+			return true;
+		}else {
+			System.out.println("게시글 삭제 실패");
 			return false;
 		}
 	}

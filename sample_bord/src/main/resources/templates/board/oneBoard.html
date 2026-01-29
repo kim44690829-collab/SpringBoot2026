@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<link rel="stylesheet" th:href="@{/css/oneBoard.css}">
 <title>Insert title here</title>
 </head>
 <body>
@@ -9,20 +11,20 @@
 	
 	<section>
 		<div id="section_wrap">
-			<div class="word"><h1>게시글</h1></div>
-			<div class="content">
+			<div class="oneBoardWord"><h1>게시글</h1></div>
+			<div class="oneBoardContent">
 				<table>
-					<tr>
-						<td th:text="${boardOne.title}"></td>
+					<tr height="50">
+						<td th:text="${boardOne.title}" width="150" align="center"></td>
 					</tr>
-					<tr>
-						<td th:text="${boardOne.createdAt}"></td>
+					<tr height="50">
+						<td th:text="${boardOne.createdAt}" width="150" align="center"></td>
 					</tr>
-					<tr>
-						<td th:text="${boardOne.writer}"></td>
+					<tr height="50">
+						<td th:text="${boardOne.writer}" width="150" align="center"></td>
 					</tr>
-					<tr>
-						<td th:text="${boardOne.content}"></td>
+					<tr height="50">
+						<td th:text="${boardOne.content}" width="150" align="center"></td>
 					</tr>
 				</table>
 				<a th:href="@{/board/modify(id = ${boardOne.id})}">게시글 수정</a>

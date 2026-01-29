@@ -18,14 +18,38 @@ public class BoardController {
 	
 	// 게시판 목록
 	@GetMapping("/board/list")
-	public String boardList(BoardDTO bdto, Model model) {
+	public String boardListForm(
+			Model model, 
+			@RequestParam(value="searchType",  required = false) String searchType, 
+			@RequestParam(value="searchKeyword", required = false) String searchKeyword 
+			) {
 		System.out.println("BoardController : boardList() 메서드 확인");
-		boardservice.writeBoard(bdto);
-		List<BoardDTO> boardlist = boardservice.allBoard();
-		model.addAttribute("list", boardlist);
+		List<BoardDTO> boardlist;
 		
+		
+		if(searchType != null && !searchKeyword.trim().isEmpty()) {
+			boardlist = boardservice.searchlist(searchType, searchKeyword);
+		}else {
+			boardlist = boardservice.allBoard();
+		}
+		model.addAttribute("list", boardlist);
 		String nextPage = "board/boardMain";
 		return nextPage;
+	}
+	
+	@PostMapping("/board/listPro")
+	public String boardListPro(BoardDTO bdto) {
+		System.out.println("BoardController : boardListPro() 메서드 확인");
+		boolean result = boardservice.writeBoard(bdto);
+		
+		if(result) {
+			// insert 성공
+			return "redirect:/board/list";
+		}else {
+			// insert 실패.
+			return "redirect:/board/write";
+		}
+		
 	}
 	
 	// 게시글 작성
@@ -86,9 +110,6 @@ public class BoardController {
 			return "redirect:/board/modify?id=" + bdto.getId();
 		}
 	}
-	
-	
-	
 	
 	
 	

@@ -192,6 +192,7 @@ public class MemberDAO {
 	
 	// 한 사람 개인의 정보를 삭제하는 메서드 작성
 	public int deleteMember(String id) {
+		System.out.println("MemberDAO : deleteMember() 매서드 확인");
 		int result = 0;
 		
 		String sql = "DELETE FROM user_member WHERE id = ?";
@@ -214,7 +215,6 @@ public class MemberDAO {
 		return result;
 		
 	}
-	
 	
 	
 	

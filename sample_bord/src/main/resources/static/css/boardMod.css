@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* ================= 게시글 수정 section ================= */
+section {
+    width: 100%;
+    padding: 60px 0;
+    background-color: #f5f6f7;
+}
+
+#section_wrap {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 타이틀 */
+.word {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.word h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* 컨텐츠 카드 */
+.content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 */
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.content tr {
+    border-bottom: 1px solid #eee;
+}
+
+.content td {
+    padding: 14px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+/* input, textarea */
+.content input[type="text"],
+.content textarea {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+}
+
+/* textarea */
+.content textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+/* 포커스 효과 */
+.content input[type="text"]:focus,
+.content textarea:focus {
+    border-color: #2c3e50;
+}
+
+/* 읽기 전용 느낌 (작성자 / 날짜) */
+.content td[type="text"] {
+    color: #777;
+}
+
+/* 수정 완료 버튼 */
+.content button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 14px 40px;
+    background-color: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.content button:hover {
+    background-color: #1e8449;
+    transform: translateY(-2px);
+}

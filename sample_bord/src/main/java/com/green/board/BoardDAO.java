@@ -20,7 +20,7 @@ public class BoardDAO {
 	// 게시글 추가 => insert
 	public int insertBoard(BoardDTO bdto) {
 		System.out.println("BoardDAO : insertBoard() 메서드 확인");
-		String sql = "INSERT INTO board(title, content, writer) VALUES(?,?,?)";
+		String sql = "INSERT INTO boardEasy(title, content, writer) VALUES(?,?,?)";
 		int result = 0;
 		
 		try(
@@ -44,7 +44,7 @@ public class BoardDAO {
 		System.out.println("BoardDAO : allSelect() 메서드 확인");
 		List<BoardDTO> boardList = new ArrayList<>();
 		// String sql = "SELECT id, title, content, writer, createdAt FROM board ORDER BY id DESC";
-		String sql = "SELECT * FROM board ORDER BY id DESC";
+		String sql = "SELECT * FROM boardEasy ORDER BY id DESC";
 		
 		try(
 				Connection conn = datasource.getConnection();
@@ -72,7 +72,7 @@ public class BoardDAO {
 		System.out.println("BoardDAO : oneSelect() 메서드 확인");
 		
 		BoardDTO bdto = new BoardDTO();
-		String sql = "SELECT * FROM board WHERE id = ?";
+		String sql = "SELECT * FROM boardEasy WHERE id = ?";
 		
 		try(
 				Connection conn = datasource.getConnection();
@@ -97,7 +97,7 @@ public class BoardDAO {
 	public int oneDelete(int id) {
 		System.out.println("BoardDAO : oneDelete() 메서드 확인");
 		
-		String sql = "DELETE FROM board WHERE id = ?";
+		String sql = "DELETE FROM boardEasy WHERE id = ?";
 		int result = 0;
 		
 		try(
@@ -117,7 +117,7 @@ public class BoardDAO {
 	public int modBoard(BoardDTO bdto) {
 		System.out.println("BoardDAO : modBoard() 메서드 확인");
 		int result = 0;
-		String sql = "UPDATE board SET title = ?, content = ? WHERE id = ?";
+		String sql = "UPDATE boardEasy SET title = ?, content = ? WHERE id = ?";
 		
 		System.out.println("1" + bdto.getTitle());
 		System.out.println("2" + bdto.getContent());
@@ -139,7 +139,49 @@ public class BoardDAO {
 		return result;
 	}
 	
-	
+	// 게시글을 검색하는 메서드
+	public List<BoardDTO> searchBoard(String searchType, String searchKeyword){
+		System.out.println("BoardDAO : searchBoard() 메서드 확인");
+		
+		List<BoardDTO> searchBoardList = new ArrayList<>();
+		
+		String sql = "";
+		if("title".equals(searchType)) {
+			sql = "SELECT * FROM boardEasy WHERE title LIKE ?";
+		}else if("content".equals(searchType)) {
+			sql = "SELECT * FROM boardEasy WHERE content LIKE ?";
+		}else if("writer".equals(searchType)){
+			sql = "SELECT * FROM boardEasy WHERE writer LIKE ?";
+		}else {
+			sql = "SELECT * FROM boardEasy WHERE createdAt LIKE ?";
+		}
+		
+		try(
+				Connection conn = datasource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO bdto = new BoardDTO();
+				bdto.setId(rs.getInt("id"));
+				bdto.setTitle(rs.getString("title"));
+				bdto.setContent(rs.getString("content"));
+				bdto.setWriter(rs.getString("writer"));
+				bdto.setCreatedAt(rs.getString("createdAt"));
+				
+				searchBoardList.add(bdto);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return searchBoardList;
+		
+	}
 	
 	
 	

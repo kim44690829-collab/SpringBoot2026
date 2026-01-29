@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<link rel="stylesheet" th:href="@{/css/boardMod.css}">
 <title>Insert title here</title>
 </head>
 <body>
@@ -12,21 +14,21 @@
 			<div class="word"><h1>board</h1></div>
 			<div class="content">
 				<form th:action="@{/board/modify(id=${oneBoard.id})}" method="POST">
-					<table>
-						<tr>
-							<td>
+					<table width="500">
+						<tr height="50">
+							<td width="150" align="center">
 								<input type="text" name="title" th:value="${oneBoard.title}" />
 							</td>
 						</tr>
-						<tr>
-							<td th:text="${oneBoard.createdAt}"></td>
+						<tr height="50">
+							<td th:text="${oneBoard.createdAt}" width="150" align="center"></td>
 						</tr>
-						<tr>
-							<td th:text="${oneBoard.writer}"></td>
+						<tr height="50">
+							<td th:text="${oneBoard.writer}" width="150" align="center"></td>
 						</tr>
-						<tr>
+						<tr height="50">
 							<td>
-								<textarea cols="100" rows="10" name="content" th:text="${oneBoard.content}"></textarea>
+								<textarea cols="100" rows="10" name="content" th:text="${oneBoard.content}" width="150" align="center"></textarea>
 							</td>
 						</tr>
 					</table>

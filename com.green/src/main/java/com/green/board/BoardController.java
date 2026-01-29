@@ -35,11 +35,37 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	// 3. DB에서 전체 게시글 목록 select로 검색해서 추출 -> 모델(model) 객체에 담는다. => 전체 목록 화면으로 이동 후 뿌린다.
+//	// 3. DB에서 전체 게시글 목록 select로 검색해서 추출 -> 모델(model) 객체에 담는다. => 전체 목록 화면으로 이동 후 뿌린다.
+//	@GetMapping("/board/list")
+//	public String boardList(Model model) {
+//		System.out.println("1. BoardController : boardList() 메서드 호출");
+//		List<BoardDTO> boardlist = boardservice.allBoard();
+//		model.addAttribute("list", boardlist);
+//		
+//		String nextPage = "board/boardList";
+//		return nextPage;
+//	}
+	// 3. DB에서 전체 게시글 목록 select로 검색해서 추출 -> 모델(model) 객체에 담는다. => 전체 목록 화면으로 이동 후 뿌린다. 
+	// 8. 검색을 위한 boardList 커스텀 하기
 	@GetMapping("/board/list")
-	public String boardList(Model model) {
+	public String boardList(
+			Model model, 
+			@RequestParam(value="searchType", required=false)  String searchType, 
+			@RequestParam(value="searchKeyWord" , required=false) String searchKeyWord
+			) {
 		System.out.println("1. BoardController : boardList() 메서드 호출");
-		List<BoardDTO> boardlist = boardservice.allBoard();
+		List<BoardDTO> boardlist;
+		
+		// 검색 종료 후 => 검색 내용이 list 나오기
+		if(searchType != null && !searchKeyWord.trim().isEmpty()) {
+			// BoardDAO에 검색 메서드(getSearchBoard())로 접근
+			// service에서 serchBoard() 메서드 호출
+			boardlist = boardservice.searchBoard(searchType, searchKeyWord);
+		}else {
+			boardlist = boardservice.allBoard();
+		}
+		
+		// 검색하지 않고 전체보기 list 나오기
 		model.addAttribute("list", boardlist);
 		
 		String nextPage = "board/boardList";
@@ -88,6 +114,40 @@ public class BoardController {
 		}
 		
 	}
+	
+	// 7. 하나의 게시글 삭제를 처리하는 controller
+	// 현재 boardInfo에 존재 => 삭제를 누르면 삭제 => 삭제 후 리스트로 이동, 삭제 실패시 boardInfo에 머무름
+	@GetMapping("/board/deletePro")
+	public String boardDeletePro(@RequestParam("num") int num, @RequestParam("writerPw") String writerPw) {
+		System.out.println("1. BoardController : boardDeletePro() 메서드 호출");
+		
+		// boardService에서 removeBoard는 boolean으로 return했기때문에 boolean으로 받아야함
+		boolean result = boardservice.removeBoard(num, writerPw);
+		
+		if(result) {
+			// 삭제 성공시 list로 이동
+			return "redirect:/board/list";
+		}else{
+			// 삭제 실패시 상세페이지
+			return "redirect:/board/boardInfo?num=" + num;
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

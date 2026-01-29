@@ -12,9 +12,9 @@ public class BoardService {
 	BoardDAO boarddao;
 	
 	// insert
-	public void writeBoard(BoardDTO bdto) {
+	public boolean writeBoard(BoardDTO bdto) {
 		System.out.println("BoardService : writeBoard() 메서드 확인");
-		boarddao.insertBoard(bdto);
+		return boarddao.insertBoard(bdto) == 1;
 	}
 	
 	// 전체 게시글 select
@@ -40,5 +40,11 @@ public class BoardService {
 		System.out.println("BoardService : oneMod() 메서드 확인");
 		System.out.println("오잉 ? " + boarddao.modBoard(bdto));
 		return boarddao.modBoard(bdto) == 1;
+	}
+	
+	// 게시글 검색
+	public List<BoardDTO> searchlist(String searchType, String searchKeyword){
+		System.out.println("BoardService : searchlist() 메서드 확인");
+		return boarddao.searchBoard(searchType, searchKeyword);
 	}
 }
