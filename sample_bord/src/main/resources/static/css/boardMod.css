@@ -50,6 +50,7 @@ section {
 
 /* input, textarea */
 .content input[type="text"],
+.content input[type="password"],
 .content textarea {
     width: 100%;
     padding: 14px;
@@ -67,6 +68,7 @@ section {
 
 /* 포커스 효과 */
 .content input[type="text"]:focus,
+.content input[type="password"]:focus,
 .content textarea:focus {
     border-color: #2c3e50;
 }

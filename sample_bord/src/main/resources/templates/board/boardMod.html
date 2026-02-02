@@ -27,6 +27,11 @@
 							<td th:text="${oneBoard.writer}" width="150" align="center"></td>
 						</tr>
 						<tr height="50">
+							<td width="150" align="center">
+								<input type="password" name="writerPw" placeholder="비밀번호를 입력해주세요" required />
+							</td>
+						</tr>
+						<tr height="50">
 							<td>
 								<textarea cols="100" rows="10" name="content" th:text="${oneBoard.content}" width="150" align="center"></textarea>
 							</td>

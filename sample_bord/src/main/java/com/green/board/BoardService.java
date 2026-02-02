@@ -5,46 +5,49 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.green.board.mapper.BoardMapper;
+
 @Service
 public class BoardService {
 	
 	@Autowired
-	BoardDAO boarddao;
+//	BoardDAO boarddao;
+	BoardMapper boardMapper;
+	
 	
 	// insert
 	public boolean writeBoard(BoardDTO bdto) {
 		System.out.println("BoardService : writeBoard() 메서드 확인");
-		return boarddao.insertBoard(bdto) == 1;
+		return boardMapper.insertBoard(bdto) == 1;
 	}
 	
 	// 전체 게시글 select
 	public List<BoardDTO> allBoard(){
 		System.out.println("BoardService : allBoard() 메서드 확인");
-		return boarddao.allSelect();
+		return boardMapper.allSelect();
 	}
 	
 	// 한 사람의 게시글 select
 	public BoardDTO oneBoard(int id) {
 		System.out.println("BoardService : oneBoard() 메서드 확인");
-		return boarddao.oneSelect(id);
+		return boardMapper.oneSelect(id);
 	}
 	
 	// 한 사람의 게시글 삭제
 	public boolean onedel(int id) {
 		System.out.println("BoardService : onedel() 메서드 확인");
-		return boarddao.oneDelete(id) == 1;
+		return boardMapper.oneDelete(id) == 1;
 	}
 	
 	// 한 사람의 게시글 수정
 	public boolean oneMod(BoardDTO bdto) {
 		System.out.println("BoardService : oneMod() 메서드 확인");
-		System.out.println("오잉 ? " + boarddao.modBoard(bdto));
-		return boarddao.modBoard(bdto) == 1;
+		return boardMapper.modBoard(bdto) == 1;
 	}
 	
 	// 게시글 검색
 	public List<BoardDTO> searchlist(String searchType, String searchKeyword){
 		System.out.println("BoardService : searchlist() 메서드 확인");
-		return boarddao.searchBoard(searchType, searchKeyword);
+		return boardMapper.searchBoard(searchType, searchKeyword);
 	}
 }

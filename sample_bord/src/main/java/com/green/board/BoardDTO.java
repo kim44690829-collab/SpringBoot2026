@@ -5,6 +5,7 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private String writer;
+	private String writerPw;
 	private String createdAt;
 	
 	public int getId() {
@@ -30,6 +31,12 @@ public class BoardDTO {
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	public String getWriterPw() {
+		return writerPw;
+	}
+	public void setWriterPw(String writerPw) {
+		this.writerPw = writerPw;
 	}
 	public String getCreatedAt() {
 		return createdAt;

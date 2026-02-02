@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.board.mapper.BoardMapper">
+	
+	<insert id="insertBoard" parameterType="BoardDTO">
+		INSERT INTO boardEasy(title, content, writer, writerPw) VALUES(#{title}, #{content}, #{writer}, #{writerPw})
+	</insert>
+	
+	<select id="allSelect" resultType="BoardDTO">
+		SELECT * FROM boardEasy ORDER BY id DESC
+	</select>
+	
+	<select id="oneSelect" resultType="BoardDTO" parameterType="int">
+		SELECT * FROM boardEasy WHERE id = #{id}
+	</select>
+	
+	<delete id="oneDelete" parameterType="int">
+		DELETE FROM boardEasy WHERE id = #{id}
+	</delete>
+	
+	<update id="modBoard" parameterType="BoardDTO">
+		UPDATE boardEasy SET title = #{title}, content = #{content} WHERE id = #{id} AND writerPw = #{writerPw}
+	</update>
+	
+	<select id="searchBoard" resultType="BoardDTO">
+		SELECT * FROM boardEasy
+		<where>
+			<choose>
+				<when test="searchType == 'title'">
+					title LIKE CONCAT("%", #{searchKeyword}, "%")
+				</when>
+				<when test="searchType == 'content'">
+					content LIKE CONCAT("%", #{searchKeyword}, "%")
+				</when>
+				<when test="searchType == 'writer'">
+					writer LIKE CONCAT("%", #{searchKeyword}, "%")
+				</when>
+				<otherwise>
+					createdAt LIKE CONCAT("%", #{searchKeyword}, "%")
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY id DESC
+	</select>
+	
+</mapper>

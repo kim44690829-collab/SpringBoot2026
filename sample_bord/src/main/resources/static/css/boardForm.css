@@ -44,6 +44,7 @@ section {
 
 /* input, textarea 공통 */
 .boardContent input[type="text"],
+.boardContent input[type="password"],
 .boardContent textarea {
     width: 100%;
     padding: 14px;
@@ -61,6 +62,7 @@ section {
 
 /* 포커스 효과 */
 .boardContent input[type="text"]:focus,
+.boardContent input[type="password"]:focus,
 .boardContent textarea:focus {
     border-color: #2c3e50;
 }
