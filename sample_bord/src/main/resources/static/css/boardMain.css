@@ -165,3 +165,63 @@ section {
     background-color: #636e72;
 }
 
+/* paging 전체 영역 */
+.paging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin: 30px 0;
+    font-size: 14px;
+}
+
+/* 모든 페이지 링크 공통 */
+.paging a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background-color: #fff;
+}
+
+.paging a.active {
+    background-color: #ff3d00;
+    border-color: #ff3d00;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* hover 효과 */
+.paging a:hover {
+    color: #fff;
+    background-color: #ff3d00;
+    border-color: #ff3d00;
+}
+
+/* 이전 / 다음 화살표 */
+.paging a:first-child,
+.paging a:last-child {
+    font-weight: bold;
+}
+
+/* 페이지 숫자 span */
+.paging span {
+    display: inline-flex;
+}
+
+/* 활성 페이지 (JS 또는 th:class로 처리) */
+.paging a.active {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+    cursor: default;
+}
+
+

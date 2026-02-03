@@ -50,4 +50,51 @@ public class BoardService {
 		System.out.println("BoardService : searchlist() 메서드 확인");
 		return boardMapper.searchBoard(searchType, searchKeyword);
 	}
+	
+	// 전체 개수 출력 메서드
+	public int allCount() {
+		System.out.println("BoardService : allCount() 메서드 확인");
+		return boardMapper.getAllCount();
+	}
+	
+	public List<BoardDTO> pageList(int startRow, int pageSize){
+		System.out.println("BoardService : pageList() 메서드 확인");
+		return boardMapper.getPageList(startRow, pageSize);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

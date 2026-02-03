@@ -9,5 +9,4 @@ public class SampleBordApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SampleBordApplication.class, args);
 	}
-
 }

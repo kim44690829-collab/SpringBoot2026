@@ -28,4 +28,10 @@ public interface BoardMapper {
 	// 게시글을 검색하는 메서드
 	public List<BoardDTO> searchBoard(@Param("searchType") String searchType, @Param("searchKeyword") String searchKeyword);
 	
+	// 전체 게시글 개수를 구하는 메서드
+	// 총 개수를 구해야하니 int형으로 받음
+	public int getAllCount();
+	
+	// 전체 게시글을 startRow 부터 pageSize만큼 보기
+	public List<BoardDTO> getPageList(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
 }

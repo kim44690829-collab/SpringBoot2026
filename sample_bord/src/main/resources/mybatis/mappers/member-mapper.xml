@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.green.member.mapper.BoardMapper">
+<mapper namespace="com.green.member.mapper.MemberMapper">
 	
 	<insert id="signupInsert" parameterType="MemberDTO">
 		INSERT INTO memberEasy(userId, userPw, email, phone) VALUES(#{userId},#{userPw},#{email},#{phone})
@@ -12,8 +12,11 @@
 		SELECT * FROM memberEasy ORDER BY num DESC
 	</select>
 	
-	<select id="isMember" parameterType="String" resultType="boolean">
-		SELECT * FROM memberEasy WHERE userId = #{userId}
+	<select id="isMember" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM memberEasy WHERE userId = #{userId}
 	</select>
 	
+	<select id="oneSelect" resultType="MemberDTO" parameterType="String">
+		SELECT * FROM memberEasy WHERE userId = #{userId}
+	</select>
 </mapper>

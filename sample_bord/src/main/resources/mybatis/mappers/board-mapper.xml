@@ -45,4 +45,49 @@
 		ORDER BY id DESC
 	</select>
 	
+	<select id="getAllCount" resultType="int">
+		SELECT COUNT(*) FROM boardEasy
+	</select>
+	
+	<select id="getPageList" resultType="BoardDTO">
+		SELECT * FROM boardEasy ORDER BY id DESC LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

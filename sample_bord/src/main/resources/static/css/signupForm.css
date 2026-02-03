@@ -12,19 +12,19 @@ section {
 }
 
 /* 타이틀 */
-.boardWord {
+.memberWord {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.boardWord h1 {
+.memberWord h1 {
     font-size: 32px;
     font-weight: 700;
     color: #2c3e50;
 }
 
 /* 컨텐츠 카드 */
-.boardContent {
+.memberContent {
     background-color: #ffffff;
     padding: 40px;
     border-radius: 12px;
@@ -32,32 +32,32 @@ section {
 }
 
 /* 테이블 */
-.boardContent table {
+.memberContent table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.boardContent tr {
+.memberContent tr {
     border-bottom: 1px solid #eee;
 }
 
-.boardContent td {
+.memberContent td {
     padding: 14px 8px;
     font-size: 14px;
     color: #333;
 }
 
 /* 라벨 */
-.boardContent label {
+.memberContent label {
     font-weight: 600;
     color: #2c3e50;
 }
 
 /* input 공통 */
-.boardContent input[type="text"],
-.boardContent input[type="password"],
-.boardContent input[type="email"],
-.boardContent input[type="tel"] {
+.memberContent input[type="text"],
+.memberContent input[type="password"],
+.memberContent input[type="email"],
+.memberContent input[type="tel"] {
     width: 100%;
     padding: 12px 14px;
     font-size: 14px;
@@ -67,12 +67,12 @@ section {
 }
 
 /* 포커스 효과 */
-.boardContent input:focus {
+.memberContent input:focus {
     border-color: #2c3e50;
 }
 
 /* 버튼 */
-.boardContent input[type="button"] {
+.memberContent input[type="submit"] {
     display: block;
     margin: 30px auto 0;
     padding: 14px 40px;
@@ -86,7 +86,7 @@ section {
     transition: all 0.3s;
 }
 
-.boardContent input[type="button"]:hover {
+.memberContent input[type="submit"]:hover {
     background-color: #1a252f;
     transform: translateY(-2px);
 }

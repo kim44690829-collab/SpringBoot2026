@@ -47,6 +47,10 @@ header {
     position: relative;
 }
 
+#header_wrap span{
+	margin-right: 10px;
+}
+
 /* hover 효과 */
 #header_wrap a::after {
     content: '';

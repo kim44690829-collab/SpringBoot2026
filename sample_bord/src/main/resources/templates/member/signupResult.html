@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	
+	<section>
+		<div id="section_wrap">
+			<span th:if="result">회원가입 성공!</span>
+			<span th:unless="result">회원가입 실패!</span>
+		</div>
+	</section>
+	
+	<footer th:replace="~{/include/header_footer.html::footer}"></footer>
+
+</body>
+</html>

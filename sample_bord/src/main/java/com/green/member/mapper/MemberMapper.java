@@ -16,5 +16,8 @@ public interface MemberMapper {
 	public List<MemberDTO> allMember();
 	
 	// 회원가입시 아이디가 중복되는지 확인하기 위한 메서드
-	public boolean isMember(String id);
+	public int isMember(String id);
+	
+	// 한 회원의 정보를 검색하는 메서드
+	public MemberDTO oneSelect(String id);
 }

@@ -31,4 +31,9 @@ public interface BoardMapper {
 	// @Param("변수") 데이터 타입 필드명 => 매개 변수가 2개 이상일 경우
 	public int deleteBoard(@Param("num") int num, @Param("writerPw") String writerPw);
 
+	// 전체 게시글의 개수를 구하는 메서드
+	public int getAllCount();
+	
+	// 전체 게시글의 시작(startRow), 몇개의 행인지 (pageSize) 알아내는 메서드
+	public List<BoardDTO> getPageList(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
 }

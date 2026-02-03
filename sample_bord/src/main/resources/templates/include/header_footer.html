@@ -2,7 +2,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" th:href="@{/css/header_footer.css}"> -->
 <title>Insert title here</title>
 </head>
 <body>
@@ -12,14 +11,29 @@
 		</div>
 		<div id="header_wrap">
 			<a th:href="@{/}">Home</a>
-			<a th:href="@{/member/login}">로그인</a>
-			<a th:href="@{/member/signup}">회원가입</a>
-			<a th:href="@{/board/list}">게시판</a>		
+			<th:block th:if="${session.members == null}">
+				<a th:href="@{/member/login}">로그인</a>
+				<a th:href="@{/member/signup}">회원가입</a>
+			</th:block>
+			<div th:if="${session.members != null}">
+				<th:block th:if="${session.members.userId == 'admin1234'}">
+					<span>관리자님 환영합니다.</span>
+					<a th:href="@{/member/logout}">로그아웃</a>
+				</th:block>
+				<th:block th:unless="${session.members.userId == 'admin1234'}">
+					<span th:text="|${session.members.userId}님 환영합니다.|"></span>
+					<a th:href="@{/member/logout}">로그아웃</a>
+				</th:block>
+			</div>
+			
+			
+			
+			<a th:href="@{/board/list}">게시판</a>
 		</div>
 	</header>
 	<footer th:fragment="footer">
 		<div id="btm">
-			<h3>footer 입니다.</h3>
+			<h3>Copyrignt OFFICE @Green</h3>
 		</div>
 	</footer>
 </body>

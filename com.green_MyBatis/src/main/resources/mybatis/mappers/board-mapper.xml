@@ -53,4 +53,14 @@
 	<delete id="deleteBoard">
 		DELETE FROM board WHERE num=#{num} AND writerPw=#{writerPw}
 	</delete>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="getAllCount" resultType="int">
+		SELECT COUNT(*) FROM board
+	</select>
+	
+	<select id="getPageList" resultType="BoardDTO">
+		SELECT * FROM board ORDER BY num DESC LIMIT #{startRow}, #{pageSize}
+	</select>
+	
 </mapper>

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.green.member.MemberDTO;
+
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class BoardController {
 	
@@ -21,18 +25,28 @@ public class BoardController {
 	public String boardListForm(
 			Model model, 
 			@RequestParam(value="searchType",  required = false) String searchType, 
-			@RequestParam(value="searchKeyword", required = false) String searchKeyword 
+			@RequestParam(value="searchKeyword", required = false) String searchKeyword,
+			@RequestParam(value="page", required = false, defaultValue="1") int page,
+			@RequestParam(value="pageSize", required = false, defaultValue="5") int pageSize
 			) {
 		System.out.println("BoardController : boardList() 메서드 확인");
+		
+		// 전체 게시글 수
+		int totalCount = boardservice.allCount();
+		// 핸들러 인스턴스화
+		PageHandler ph = new PageHandler(totalCount, page, pageSize);
+		
 		List<BoardDTO> boardlist;
 		
 		
 		if(searchType != null && !searchKeyword.trim().isEmpty()) {
 			boardlist = boardservice.searchlist(searchType, searchKeyword);
 		}else {
-			boardlist = boardservice.allBoard();
+			boardlist = boardservice.pageList(ph.getStartRow(), pageSize);
 		}
 		model.addAttribute("list", boardlist);
+		model.addAttribute("ph", ph);
+		
 		String nextPage = "board/boardMain";
 		return nextPage;
 	}
@@ -56,8 +70,10 @@ public class BoardController {
 	@GetMapping("/board/write")
 	public String boardWrite() {
 		System.out.println("BoardController : boardWrite() 메서드 확인");
+		
 		String nextPage = "board/boardWrite";
 		return nextPage;
+		
 	}
 
 	// 하나의 게시판 클릭

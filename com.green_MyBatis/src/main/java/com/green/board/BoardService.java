@@ -2,6 +2,7 @@ package com.green.board;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,5 +83,17 @@ public class BoardService {
 			System.out.println("게시글 삭제 실패");
 			return false;
 		}
+	}
+	
+	// 전체 게시글의 개수를 검색하는 메서드
+	public int getAllCount() {
+		System.out.println("3. BoardService : getAllCount() 메서드 호출");
+		return boardMapper.getAllCount();
+	}
+	
+	// 전체 게시글의 시작(startRow), 몇개의 행인지 (pageSize) 알아내는 메서드
+	public List<BoardDTO> getPageList(int startRow, int pageSize){
+		System.out.println("3. BoardService : getPageList() 메서드 호출");
+		return boardMapper.getPageList(startRow, pageSize);
 	}
 }
