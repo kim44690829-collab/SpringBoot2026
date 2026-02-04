@@ -96,4 +96,28 @@ public class BoardService {
 		System.out.println("3. BoardService : getPageList() 메서드 호출");
 		return boardMapper.getPageList(startRow, pageSize);
 	}
+	
+	// 검색했을때 게시글 수
+	public int getSearchCount(String searchType, String searchKeyWord) {
+		System.out.println("3. BoardService : getSearchCount() 메서드 호출");
+		
+		return boardMapper.getSearchCount(searchType, searchKeyWord);
+	}
+	
+	// 검색했을때 게시글 출력문
+	public List<BoardDTO> getSearchPageList(String searchType, String searchKeyWord, int startRow, int pageSize){
+		System.out.println("3. BoardService : getSearchPageList() 메서드 호출");
+		return boardMapper.getSearchPageList(searchType, searchKeyWord, startRow, pageSize);
+	}
+	
+	// 마이페이지 회원별 게시글 출력문
+	public List<BoardDTO> getMyBoardList(String loginId, int startRow, int pageSize){
+		System.out.println("3. BoardService : getMyBoardList() 메서드 호출");
+		return boardMapper.getMyBoardList(loginId, startRow, pageSize);
+	}
+	// 마이페이지 회원별 게시글 수
+	public int getMyBoardCount(String loginId) {
+		System.out.println("3. BoardService : getMyBoardCount() 메서드 호출");
+		return boardMapper.getMyBoardCount(loginId);
+	}
 }

@@ -22,12 +22,14 @@
 			<th:block th:if="${session.loginmember != null && session.loginmember.id != 'admin9867'}">
 				<span th:text="${session.loginmember.id}" ></span>님 환영합니다.
 				<a th:href="@{/member/memberInfo(id=${session.loginmember.id})}">MyPage</a>
+				<a th:href="@{/board/mypage}">MyBoard</a>
 				<a th:href="@{/member/logout}">로그아웃</a>
 			</th:block>
 			<th:block th:if="${session.loginmember != null && session.loginmember.id == 'admin9867'}">
 				<span>관리자님 환영합니다.</span>
 				<a th:href="@{/member/list}">회원목록</a>		
 				<a th:href="@{/member/memberInfo(id=${session.loginmember.id})}">MyPage</a>
+				<a th:href="@{/board/mypage}">MyBoard</a>
 				<a th:href="@{/member/logout}">로그아웃</a>
 			</th:block>
 			<a th:href="@{/board/list}">게시판</a>
