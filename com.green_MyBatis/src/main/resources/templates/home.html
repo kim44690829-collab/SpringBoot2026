@@ -11,15 +11,32 @@
 
 	<header th:replace="~{/include/header_nav_footer.html::header}"></header>
 	<nav th:replace="~{/include/header_nav_footer.html::nav}"></nav>
+	
 	<section>
 		<div id="section_wrap">
 			<div class="word">HOME</div>
+			
 			<div class="content">
-				<img th:src="@{/img/Main.jpg}" alt="mainImg" />
+				<!-- carProduct 상품 정보 출력 -->
+				<div class="carList">
+					<div class="carItem" th:each="car ,stat : ${carlist}">
+						<!-- <img th:src="@{/img/car/{img}(img=${car.img})}" />
+						<div class="carName" th:text="${car.carName}"></div> -->
+						<div th:text="${stat.index}"></div>
+						<!-- <div class="carPrice" th:text="${#numbers.formatInteger(car.price,3,'COMMA')} + 원"></div> -->
+					</div>
+				</div>
+				
+				<!-- <img th:src="@{/img/Main.jpg}" alt="mainImg" /> -->
 			</div>
 		</div>
 	</section>
+	
 	<footer th:replace="~{/include/header_nav_footer.html::footer}" ></footer>
+	
+	<script>
+		
+	</script>
 	
 </body>
 </html>

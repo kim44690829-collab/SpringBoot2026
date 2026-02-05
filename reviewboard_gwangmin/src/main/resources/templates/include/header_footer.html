@@ -5,6 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<header th:fragment="header">
+		<div id="top">
+			<h3>레스토랑</h3>
+		</div>
+		<div id="header_wrap">
+			<span>안녕하세요.</span><br/>
+			<a th:href="@{/}">게시판</a>
+			<a th:href="@{/reviewBoard/write}">게시판 작성</a>
+		</div>
+	</header>
+	<footer th:fragment="footer">
+		<div id="footer_wrap">
+			Copyrignt OFFICE @Green
+		</div>
+	</footer>
 </body>
 </html>

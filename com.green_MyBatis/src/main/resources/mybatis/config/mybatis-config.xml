@@ -10,6 +10,7 @@ dtd/mybatis-3-config.dtd">
 	<typeAliases>
 		<typeAlias alias="MemberDTO" type="com.green.member.MemberDTO" />
 		<typeAlias alias="BoardDTO" type="com.green.board.BoardDTO" />
+		<typeAlias alias="carDTO" type="com.green.carproduct.CarProductDTO" />
 	</typeAliases>
 
 	<!-- <mappers>

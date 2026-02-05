@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+/* ===== Review Write Section ===== */
+section {
+	padding: 40px 0;
+}
+
+#section_wrap {
+	width: 800px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	padding: 30px 40px;
+	border-radius: 10px;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.word h1 {
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 26px;
+	font-weight: 700;
+	color: #333;
+}
+
+/* ===== Form Table ===== */
+.content table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.content td {
+	padding: 12px 10px;
+}
+
+.content td:first-child {
+	width: 120px;
+	text-align: right;
+	padding-right: 20px;
+}
+
+.content label {
+	font-weight: 600;
+	color: #444;
+}
+
+/* ===== Inputs ===== */
+.content input[type="text"],
+.content textarea{
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 14px;
+}
+
+.content select{
+	width: 150px;
+	padding: 10px 12px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 14px;
+}
+
+.content input[type="text"]:focus,
+.content textarea:focus,
+.content select:focus {
+	outline: none;
+	border-color: #2c7be5;
+	box-shadow: 0 0 0 2px rgba(44, 123, 229, 0.15);
+}
+
+.content textarea {
+	resize: none;
+}
+
+/* ===== Buttons ===== */
+.content input[type="submit"],
+.content input[type="button"] {
+	margin-top: 25px;
+	padding: 10px 24px;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.content input[type="submit"] {
+	background-color: #2c7be5;
+	color: #fff;
+	margin-right: 10px;
+}
+
+.content input[type="submit"]:hover {
+	background-color: #1a68d1;
+}
+
+.content input[type="button"] {
+	background-color: #ddd;
+	color: #333;
+}
+
+.content input[type="button"]:hover {
+	background-color: #c6c6c6;
+}
+
+/* ===== Button Center Align ===== */
+.btn-wrap {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+}
+

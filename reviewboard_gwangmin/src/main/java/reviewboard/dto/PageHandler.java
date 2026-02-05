@@ -20,8 +20,9 @@ public class PageHandler {
 	private boolean prev; // 이전 버튼
 	private boolean next; // 다음 버튼
 	
-	public PageHandler(int totalCount, int pageNum, int pageSize) {
+	public PageHandler(int totalCount, int pageBlock, int pageNum, int pageSize) {
 		this.totalCount = totalCount;
+		this.pageBlock = pageBlock;
 		this.pageNum = pageNum;
 		this.pageSize = pageSize;
 		

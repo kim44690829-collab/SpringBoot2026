@@ -2,9 +2,67 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<link rel="stylesheet" th:href="@{/css/reviewWrite.css}">
 <title>Insert title here</title>
 </head>
 <body>
-
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	<section>
+		<div id="section_wrap">
+			<div class="word"><h1>리뷰 작성</h1></div>
+			<div class="content">
+				<form th:action="@{/reviewBoard/writePro}" method="POST">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<label for="title">제목 : </label>
+								</td>
+								<td>
+									<input type="text" name="title" id="title" placeholder="리뷰 제목" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="writer">작성자 : </label>
+								</td>
+								<td>
+									<input type="text" name="writer" id="writer" placeholder="작성자 이름" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="writer">별점 : </label>
+								</td>
+								<td>
+									<select name="rating">
+										<option value="5">5점</option>
+										<option value="4">4점</option>
+										<option value="3">3점</option>
+										<option value="2">2점</option>
+										<option value="1">1점</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label for="content">내용 : </label>
+								</td>
+								<td>
+									<textarea rows="10" cols="55" name="content" id="content" placeholder="리뷰 내용을 입력하세요."></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="btn-wrap">
+						<input type="submit" value="저장하기" />
+						<input type="button" value="취소" />
+					</div>
+				</form>		
+			</div>
+		</div>
+	</section>
+	<footer th:replace="~{/include/header_footer.html::footer}" ></footer>
 </body>
 </html>

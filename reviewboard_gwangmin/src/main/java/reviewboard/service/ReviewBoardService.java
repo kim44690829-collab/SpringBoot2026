@@ -14,14 +14,24 @@ public class ReviewBoardService {
 	@Autowired
 	ReviewBoardMapper reviewBoardMepper;
 	
-	public int insertBoard() {
+	public int insertBoard(ReviewBoardDTO rbdto) {
 		System.out.println("ReviewBoardService : insertBoard() 매서드 확인");
-		return reviewBoardMepper.insertBoard();
+		return reviewBoardMepper.insertBoard(rbdto);
 	}
 	
 	public List<ReviewBoardDTO> allSelect(int startRow, int pageSize){
 		System.out.println("ReviewBoardService : allSelect() 매서드 확인");
 		return reviewBoardMepper.allSelect(startRow, pageSize);
+	}
+	
+	public int countBoard() {
+		System.out.println("ReviewBoardService : countBoard() 매서드 확인");
+		return reviewBoardMepper.countBoard();
+	}
+	
+	public double ratingAvg() {
+		System.out.println("ReviewBoardService : ratingAvg() 매서드 확인");
+		return reviewBoardMepper.ratingAvg();
 	}
 	
 	public ReviewBoardDTO oneSelect(int num) {

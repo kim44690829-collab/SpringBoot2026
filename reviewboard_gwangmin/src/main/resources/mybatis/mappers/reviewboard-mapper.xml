@@ -2,14 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper>
+<mapper namespace="reviewboard.mapper.ReviewBoardMapper">
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" parameterType="ReviewBoardDTO">
 		INSERT INTO reviewBoard(title, writer, rating, content) VALUES(#{title}, #{writer}, #{rating}, #{content})
 	</insert>
 	
 	<select id="allSelect" resultType="ReviewBoardDTO">
-		SELECT * FROM reviewBoard ORDER BY DESC LIMIT startRow, pageSize
+		SELECT * FROM reviewBoard ORDER BY num DESC LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(*) FROM reviewBoard
+	</select>
+	
+	<select id="ratingAvg" resultType="double"> 
+		SELECT AVG(rating) FROM reviewBoard
 	</select>
 	
 	<select id="oneSelect" resultType="ReviewBoardDTO" parameterType="int">

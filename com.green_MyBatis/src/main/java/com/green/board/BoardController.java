@@ -70,7 +70,7 @@ public class BoardController {
 	@GetMapping("/board/list")
 	public String boardList(
 			Model model, 
-			@RequestParam(value="searchType", required=false)  String searchType, 
+			@RequestParam(value="searchType", required=false)  String searchType,
 			@RequestParam(value="searchKeyWord" , required=false) String searchKeyWord,
 			// 1. 페이지 번호 => 1부터 시작 - 초기값 1로 정의
 			@RequestParam(value="page", defaultValue = "1") int page,

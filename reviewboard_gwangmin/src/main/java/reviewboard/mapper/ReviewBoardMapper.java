@@ -11,11 +11,15 @@ import reviewboard.dto.ReviewBoardDTO;
 public interface ReviewBoardMapper {
 	
 	// 게시판 insert
-	public int insertBoard();
+	public int insertBoard(ReviewBoardDTO rbdto);
 	
 	// 게시판 전체 select
 	// 게시판 전체 select일때만 paging이 되면 됨. 나머지는 하나 상세보기 혹은 업데이트, 삭제, 삽입 등임.
 	public List<ReviewBoardDTO> allSelect(@Param("startRow") int startRow, @Param("pageSize") int pageSize);
+	
+	public int countBoard();
+	
+	public double ratingAvg();
 	
 	// 게시판 하나 select
 	public ReviewBoardDTO oneSelect(int num);
