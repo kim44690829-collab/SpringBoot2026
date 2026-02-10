@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="questBoard.mapper.QuestBoardMapper">
+	
+	<!-- public void questBoardInsert(QuestBoardDTO qdto); -->
+	<insert id="questBoardInsert" parameterType="qDTO">
+		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, re_level, content)
+		VALUES(#{writer}, #{email}, #{subject},#{password},
+		(SELECT IFNULL(MAX(q.ref)+1, 1) FROM questBoard q), 1, 1, #{content})
+	</insert>
+	
+	<!-- public List<QuestBoardDTO> boardAllSelect(); -->
+	<select id="boardAllSelect" resultType="qDTO">
+		SELECT * FROM questBoard ORDER BY ref DESC, re_step ASC
+	</select>
+	
+	<!-- public QuestBoardDTO boardOneSelect(int num); -->
+	<select id="boardOneSelect" resultType="qDTO" parameterType="int">
+		SELECT * FROM questBoard WHERE num = #{num}
+	</select>
+	
+</mapper>

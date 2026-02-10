@@ -2,9 +2,55 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<link rel="stylesheet" th:href="@{/css/reviewInfo.css}">
 <title>Insert title here</title>
 </head>
 <body>
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	<section>
+		<div id="section_wrap">
+			<div class="word"><h1>리뷰 상세보기</h1></div>
+			<div class="content">
+				<table>
+					<tbody>
+						<tr>
+							<td class="tableTitle">제목</td>
+							<td th:text="${detail.title}"></td>
+						</tr>
+						<tr>
+							<td class="tableTitle">작성자</td>
+							<td th:text="${detail.writer}"></td>
+						</tr>
+						<tr>
+							<td class="tableTitle" >별점</td>
+							<td>
+							  <span th:if="${detail.rating == 5}">★★★★★</span>
+							  <span th:if="${detail.rating == 4}">★★★★☆</span>
+							  <span th:if="${detail.rating == 3}">★★★☆☆</span>
+							  <span th:if="${detail.rating == 2}">★★☆☆☆</span>
+							  <span th:if="${detail.rating == 1}">★☆☆☆☆</span>
+							</td>
+							<td class="tableTitle">조회수</td>
+							<td th:text="${detail.readCount}"></td>
+						</tr>
+						<tr>
+							<td class="tableTitle">내용</td>
+							<td th:text="${detail.content}" style="text-align:left"></td>
+						</tr>
+					</tbody>
+					<tr>
+						<td colspan="4">
+						    <input type="button" value="수정하기" th:onclick="|location.href='@{/reviewBoard/update(num = ${detail.num})}'|"/>
+						    <input type="button" value="삭제하기" th:onclick="|location.href='@{/reviewBoard/deletePro(num = ${detail.num})}'|" />
+						    <input type="button" value="목록보기" th:onclick="|location.href='@{/reviewBoard/list}'|" />
+						</td>
+					</tr>
 
+				</table>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="~{/include/header_footer.html::footer}" ></footer>
 </body>
 </html>

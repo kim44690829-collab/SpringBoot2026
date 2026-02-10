@@ -30,11 +30,12 @@ section {
 
 .content td {
 	padding: 12px 10px;
+
 }
 
 .content td:first-child {
 	width: 120px;
-	text-align: right;
+	text-align: left;
 	padding-right: 20px;
 }
 

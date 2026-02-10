@@ -37,7 +37,6 @@ public class PageHandler {
 		// 근데 소수점을 반올림 혹은 버림을 하면 게시글이 안나옴
 		// 그래서 올림을 해서 페이지를 늘려주고 totalPage는 int형이므로 다시 int형으로 명시적 형변환을 함
 		totalPage = (int)Math.ceil(totalCount / (double)pageSize);
-		
 		// DB에서 LIMIT를 통해 가져올 데이터의 시작 위치를 구해야 한다.
 		// 5개씩 게시글을 나눠야 함 -> 1페이지 : 0,1,2,3,4
 							//	2페이지 : 5,6,7,8,9

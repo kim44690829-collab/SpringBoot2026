@@ -1,0 +1,90 @@
+@charset "UTF-8";
+body {
+    font-family: 'Pretendard', '맑은 고딕', sans-serif;
+    background-color: #f5f6f7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr td {
+    padding: 10px;
+}
+
+table tr td:first-child {
+    width: 120px;
+    background-color: #f0f0f0;
+    text-align: right;
+    font-weight: bold;
+}
+
+table tr td:last-child {
+    background-color: #fff;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.writeBtn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.writeBtn input {
+    padding: 8px 20px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.writeBtn input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.writeBtn input[type="reset"] {
+    background-color: #f44336;
+    color: white;
+}
+
+.writeBtn input[type="button"] {
+    background-color: #555;
+    color: white;
+}
+
+.writeBtn input:hover {
+    opacity: 0.85;
+}

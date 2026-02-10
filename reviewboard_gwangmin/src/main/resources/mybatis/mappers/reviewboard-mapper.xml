@@ -16,7 +16,7 @@
 		SELECT COUNT(*) FROM reviewBoard
 	</select>
 	
-	<select id="ratingAvg" resultType="double"> 
+	<select id="ratingAvg" resultType="Double"> 
 		SELECT AVG(rating) FROM reviewBoard
 	</select>
 	
@@ -31,5 +31,9 @@
 	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM reviewBoard WHERE num = #{num}
 	</delete>
+	
+	<update id="updateCount" parameterType="int">
+		UPDATE reviewBoard SET readCount = readCount + 1 WHERE num = #{num}
+	</update>
 	
 </mapper>

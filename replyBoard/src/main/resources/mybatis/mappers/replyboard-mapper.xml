@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="replyBoard.mapper.ReplyBoardMapper">
+	
+	<!-- public void insertReplyBoard(ReplyBoardDTO rdto); -->
+	<!-- 
+		ref는 처음에는 비어있음 -> IFNULL() 함수를 이용해 기본값 1부터 시작하도록 작성
+		IFNULL(MAX(ref)+1,1) => IFNULL(인수1, 인수2) 는 인수1이 NULL이면 인수2가 출력 NULL이 아니면 인수1 출력
+		re_step = 1인 이유는 댓글이 아니라 원글이면 기본값으로 1로 정의
+		re_level = 1인 이유도 마찬가지로 원글이기때문에 기본값으로 1로 정의
+	 -->
+	<insert id="insertReplyBoard" parameterType="rDTO">
+		INSERT INTO replyBoard(writer, email, subject, password, ref, re_step, re_level, content, upload1, upload2)
+		VALUES (#{writer}, #{email}, #{subject}, #{password}, 
+		(SELECT IFNULL(MAX(r.ref)+1, 1) FROM replyBoard r), 1, 1, #{content}, #{upload1}, #{upload2})
+	</insert>
+	
+	<!-- public List<ReplyBoardDTO> getAllReplyBoard(); -->
+	<select id="getAllReplyBoard" resultType="rDTO">
+		SELECT * FROM replyBoard ORDER BY ref DESC, re_step ASC
+	</select>
+	
+	<!-- public ReplyBoardDTO getOneBoard(int num); -->
+	<select id="getOneBoard" resultType="rDTO" parameterType="int">
+		SELECT * FROM replyBoard WHERE num = #{num} 
+	</select>
+	
+	<!-- 댓글의 insert -->
+	<!-- public void reWriteInsert(ReplyBoardDTO rdto); -->
+	<insert id="reWriteInsert" parameterType="rDTO">
+		INSERT INTO replyBoard(writer, email, subject, password, ref, re_step, re_level, content)
+		VALUES (#{writer}, #{email}, #{subject}, #{password}, #{ref},
+		#{re_step} + 1, #{re_level} + 1, #{content}) 
+	</insert>
+	
+	<!-- 댓글의 update => 반드시 먼저 선행되어야한다. -->
+	<!-- 이유 : 먼저 달린 댓글인 경우 1을 누적하여 정렬을 아래로 내린다. -->
+	<!-- public void reSqUpdate(ReplyBoardDTO rdto); -->
+	<!-- ref = #{ref} AND re_step > #{re_step} => 이 조건에 만족하면 +1을 해서 re_step을 1 늘려라 -> 이후 2로 insert -->
+	<update id="reSqUpdate" parameterType="rDTO">
+		UPDATE replyBoard SET re_step = re_step + 1 WHERE ref = #{ref} AND re_step > #{re_step} 
+	</update>
+</mapper>

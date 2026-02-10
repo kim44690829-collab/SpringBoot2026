@@ -31,7 +31,8 @@ public class ReviewBoardService {
 	
 	public double ratingAvg() {
 		System.out.println("ReviewBoardService : ratingAvg() 매서드 확인");
-		return reviewBoardMepper.ratingAvg();
+		Double result = reviewBoardMepper.ratingAvg(); 
+		return (result == null) ? 0.0 : result;
 	}
 	
 	public ReviewBoardDTO oneSelect(int num) {
@@ -39,14 +40,19 @@ public class ReviewBoardService {
 		return reviewBoardMepper.oneSelect(num);
 	}
 	
-	public int updateBoard(ReviewBoardDTO rbdto) {
+	public boolean updateBoard(ReviewBoardDTO rbdto) {
 		System.out.println("ReviewBoardService : updateBoard() 매서드 확인");
-		return reviewBoardMepper.updateBoard(rbdto);
+		return reviewBoardMepper.updateBoard(rbdto) == 1;
 	}
 	
-	public int deleteBoard(int num) {
+	public boolean deleteBoard(int num) {
 		System.out.println("ReviewBoardService : deleteBoard() 매서드 확인");
-		return reviewBoardMepper.deleteBoard(num);
+		return reviewBoardMepper.deleteBoard(num) == 1;
+	}
+	
+	public void updateCount(int num) {
+		System.out.println("ReviewBoardService : updateCount() 매서드 확인");
+		reviewBoardMepper.updateCount(num);
 	}
 	
 }

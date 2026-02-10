@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+/* 전체 래퍼 */
+#section_wrap {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* 제목 */
+.word h1 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/* 컨텐츠 영역 */
+.content {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.05)
+  );
+}
+
+/* 이미지 */
+.content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

@@ -19,7 +19,7 @@ public interface ReviewBoardMapper {
 	
 	public int countBoard();
 	
-	public double ratingAvg();
+	public Double ratingAvg();
 	
 	// 게시판 하나 select
 	public ReviewBoardDTO oneSelect(int num);
@@ -29,4 +29,8 @@ public interface ReviewBoardMapper {
 	
 	// 게시판 delete
 	public int deleteBoard(int num);
+	
+	// 조회수 증가
+	public int updateCount(int num);
+	
 }

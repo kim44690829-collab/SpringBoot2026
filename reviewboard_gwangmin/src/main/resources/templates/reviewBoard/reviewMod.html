@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header_footer.css}">
+<link rel="stylesheet" th:href="@{/css/reviewMod.css}">
+<title>Insert title here</title>
+</head>
+<body>
+	<header th:replace="~{/include/header_footer.html::header}"></header>
+	<section>
+		<div id="section_wrap">
+			<div class="word"><h1>리뷰 상세보기</h1></div>
+			<div class="content">
+				<form th:action="@{/reviewBoard/updatePro(num = ${detail.num})}" method="POST">
+					<table>
+						<tbody>
+							<tr>
+								<td class="tableTitle">제목</td>
+								<td>
+									<input type="text" name="title" th:value="${detail.title}" />
+								</td>
+							</tr>
+							<tr>
+								<td class="tableTitle">작성자</td>
+								<td th:text="${detail.writer}"></td>
+							</tr>
+							<tr>
+								<td class="tableTitle" >별점</td>
+								<td>
+									<select name="rating">
+										<option value="5" th:selected="${detail.rating == 5}">5점</option>
+										<option value="4" th:selected="${detail.rating == 4}">4점</option>
+										<option value="3" th:selected="${detail.rating == 3}">3점</option>
+										<option value="2" th:selected="${detail.rating == 2}">2점</option>
+										<option value="1" th:selected="${detail.rating == 1}">1점</option>
+									</select>
+								</td>
+								<td class="tableTitle">조회수</td>
+								<td th:text="${detail.readCount}"></td>
+							</tr>
+							<tr>
+								<td class="tableTitle">내용</td>
+								<td>
+									<textarea rows="10" cols="55" name="content" id="content" th:text="${detail.content}" style="text-align: left"></textarea>
+								</td>
+							</tr>
+						</tbody>
+						<tr>
+							<td colspan="4">
+							    <input type="submit" value="수정완료"/>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</section>
+	<footer th:replace="~{/include/header_footer.html::footer}" ></footer>
+</body>
+</html>

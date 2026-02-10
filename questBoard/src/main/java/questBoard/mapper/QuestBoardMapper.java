@@ -1,0 +1,21 @@
+package questBoard.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import questBoard.dto.QuestBoardDTO;
+
+@Mapper
+public interface QuestBoardMapper {
+
+	
+	// 게시글 작성 insert
+	public void questBoardInsert(QuestBoardDTO qdto);
+	// 게시글 목록 select
+	public List<QuestBoardDTO> boardAllSelect();
+	// 게시글 하나 상세보기 select
+	public QuestBoardDTO boardOneSelect(int num);
+	
+	
+}

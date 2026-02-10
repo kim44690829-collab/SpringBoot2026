@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+	<h2>전체 게시글 목록</h2>
+		<table width="700" border="1">
+			<tr height="40">
+				<td colspan="5" align="right">
+					<button type="button" th:onclick="|location.href='/board/write'|">글쓰기</button>
+				</td>
+			</tr>
+			<tr height="40">
+				<td width="50" align="center">번호</td>
+				<td width="320" align="center">제목</td>
+				<td width="100" align="center">작성자</td>
+				<td width="150" align="center">작성일자</td>
+				<td width="80" align="center">조회수</td>
+			</tr>
+			<tr height="40" th:each="li, stat : ${list}">
+				<td th:text="${stat.size - stat.index}"></td>
+				<td>
+					<a th:href="@{/board/detail(num = ${li.num})}" th:text="${li.subject}"></a>
+				</td>
+				<td th:text="${li.writer}"></td>
+				<td th:text="${#dates.format(li.reg_date, 'yyyy-MM-dd')}"></td>
+				<td th:text="${li.readcount}"></td>
+			</tr>
+	    </table>
+  	</div>
+</body>
+</html>

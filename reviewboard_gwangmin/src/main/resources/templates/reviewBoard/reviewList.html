@@ -11,7 +11,19 @@
 	<section>
 		<div id="section_wrap">
 			<div class="word"><h1>리뷰 작성</h1></div>
-			<div class="word"><h3>전체 평균 별점 : <span th:text="${avg}"></span></h3></div>
+			<div class="wordWrap">
+				<div class="word">
+					<h3 th:if="${avg == 5.0}"> 전체 평균 별점 : <span th:text="${avg}"></span>★★★★★</h3>
+					<h3 th:if="${4.0 <= avg && avg < 5.0}"> 전체 평균 별점 : <span th:text="${avg}"></span>★★★★☆</h3>
+					<h3 th:if="${3.0 <= avg && avg < 4.0}">전체 평균 별점 : <span th:text="${avg}"></span>★★★☆☆</h3>
+					<h3 th:if="${2.0 <= avg && avg < 3.0}">전체 평균 별점 : <span th:text="${avg}"></span>★★☆☆☆</h3>
+					<h3 th:if="${1.0 <= avg && avg < 2.0}">전체 평균 별점 : <span th:text="${avg}"></span>★☆☆☆☆</h3>
+					<h3 th:if="${0.0 <= avg && avg < 1.0}">전체 평균 별점 : <span th:text="${avg}"></span>☆☆☆☆☆</h3>
+				</div>
+				<div>
+					<button type="button" class="wordBtn" th:onclick="|location.href='@{/reviewBoard/write}'|">게시글 작성</button>
+				</div>
+			</div>
 			<div class="content">
 				<table>
 					<thead>
@@ -27,7 +39,9 @@
 					<tbody>
 						<tr th:each="li, stat : ${list}">
 							<td th:text="${ph.totalCount - ((ph.pageNum - 1) * ph.pageSize) - stat.index}"></td>
-							<td th:text="${li.title}"></td>
+							<td>
+								<a th:href="@{/reviewBoard/detail(num = ${li.num})}"  th:text="${li.title}"></a>
+							</td>
 							<td th:text="${li.writer}"></td>
 							<td th:text="${li.rating}"></td>
 							<td th:text="${li.reg_date}"></td>
@@ -35,14 +49,14 @@
 						</tr>
 					</tbody>
 				</table>
-				<div class="paging">
-					<a th:if="${ph.prev}" th:href="@{/(page = ${ph.startPage - 1})}">이전</a>
+				<div class="paging" th:if="${ph.totalCount >= 1}">
+					<a th:if="${ph.prev}" th:href="@{/reviewBoard/list(page = ${ph.startPage - 1})}">이전</a>
 					
 					<span th:each="i: ${#numbers.sequence(ph.startPage, ph.endPage)}">
-						<a th:href="@{/(page=${i})}" th:text="${i}" th:classappend="${i == ph.pageNum ? 'active' : ''}"></a>
+						<a th:href="@{/reviewBoard/list(page=${i})}" th:text="${i}" th:classappend="${i == ph.pageNum ? 'active' : ''}"></a>
 					</span>
 					
-					<a th:if="${ph.next}" th:href="@{/(page = ${ph.endPage + 1})}">다음</a>					
+					<a th:if="${ph.next}" th:href="@{/reviewBoard/list(page = ${ph.endPage + 1})}">다음</a>					
 				</div>
 			</div>
 		</div>
