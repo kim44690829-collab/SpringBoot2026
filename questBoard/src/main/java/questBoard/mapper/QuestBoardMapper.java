@@ -16,6 +16,7 @@ public interface QuestBoardMapper {
 	public List<QuestBoardDTO> boardAllSelect();
 	// 게시글 하나 상세보기 select
 	public QuestBoardDTO boardOneSelect(int num);
-	
+	// 게시글 답글 insert
+	public void reWriteInsert(QuestBoardDTO qdto);
 	
 }

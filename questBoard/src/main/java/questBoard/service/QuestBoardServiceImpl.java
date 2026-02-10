@@ -32,6 +32,12 @@ public class QuestBoardServiceImpl implements QuestBoardService{
 		return questBoardMapper.boardOneSelect(num);
 	}
 
+	@Override
+	public void reWriteInsert(QuestBoardDTO qdto) {
+		System.out.println("QuestBoardServiceImpl : reWriteInsert() 메서드 확인");
+		questBoardMapper.reWriteInsert(qdto);
+	}
+
 	
 	
 }

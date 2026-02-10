@@ -10,7 +10,7 @@
 		<table width="700" border="1">
 			<tr height="40">
 				<td colspan="5" align="right">
-					<button type="button" th:onclick="|location.href='/board/write'|">글쓰기</button>
+					<button type="button" th:onclick="|location.href='@{/board/write}'|">글쓰기</button>
 				</td>
 			</tr>
 			<tr height="40">
@@ -22,9 +22,15 @@
 			</tr>
 			<tr height="40" th:each="li, stat : ${list}">
 				<td th:text="${stat.size - stat.index}"></td>
-				<td>
-					<a th:href="@{/board/detail(num = ${li.num})}" th:text="${li.subject}"></a>
-				</td>
+				<td style="text-align:left;">
+			        <!-- 답글인 경우 -->
+			        <span th:if="${li.re_step == 2}"
+			             th:style="'padding-left: 20px'">
+			            ↳[re]
+			        </span>
+			        <a th:href="@{/board/detail(num=${li.num})}"
+			           th:text="${li.subject}"></a>
+			    </td>
 				<td th:text="${li.writer}"></td>
 				<td th:text="${#dates.format(li.reg_date, 'yyyy-MM-dd')}"></td>
 				<td th:text="${li.readcount}"></td>

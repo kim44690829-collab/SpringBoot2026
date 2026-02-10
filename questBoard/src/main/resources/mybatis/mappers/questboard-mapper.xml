@@ -6,9 +6,9 @@
 	
 	<!-- public void questBoardInsert(QuestBoardDTO qdto); -->
 	<insert id="questBoardInsert" parameterType="qDTO">
-		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, re_level, content)
+		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, content)
 		VALUES(#{writer}, #{email}, #{subject},#{password},
-		(SELECT IFNULL(MAX(q.ref)+1, 1) FROM questBoard q), 1, 1, #{content})
+		(SELECT IFNULL(MAX(q.ref)+1, 1) FROM questBoard q), 1, #{content})
 	</insert>
 	
 	<!-- public List<QuestBoardDTO> boardAllSelect(); -->
@@ -21,4 +21,9 @@
 		SELECT * FROM questBoard WHERE num = #{num}
 	</select>
 	
+	<!-- public void reWriteInsert(); -->
+	<insert id="reWriteInsert" parameterType="qDTO">
+		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, content)
+		VALUES(#{writer}, #{email}, #{subject}, #{password}, #{ref}, 2, #{content})
+	</insert>
 </mapper>

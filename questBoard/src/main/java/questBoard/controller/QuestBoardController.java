@@ -50,9 +50,28 @@ public class QuestBoardController {
 		return "/questBoard/questboardDetail";
 	}
 	
+	@GetMapping("/board/rewrite")
+	public String rewriteForm(
+			Model model,
+			@RequestParam("num") int num,
+			@RequestParam("ref") int ref,
+			@RequestParam("re_step") int re_step
+			) {
+		System.out.println("QuestBoardController : rewriteForm() 메서드 확인");
+		
+		model.addAttribute("num", num);
+		model.addAttribute("ref", ref);
+		model.addAttribute("re_step", re_step);
+		
+		return "/questBoard/questboardRewrite_Form";
+	}
 	
-	
-	
+	@PostMapping("/board/reWritePro")
+	public String rewritePro(QuestBoardDTO qdto) {
+		System.out.println("QuestBoardController : rewriteForm() 메서드 확인");
+		questBoardService.reWriteInsert(qdto);
+		return "redirect:/board/list";
+	}
 	
 	
 	

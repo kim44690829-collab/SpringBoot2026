@@ -15,5 +15,6 @@ public interface QuestBoardService {
 	// 게시글 하나 상세보기 select
 	public QuestBoardDTO boardOneSelect(int num);
 	
-	// 답글 
+	// 답글
+	public void reWriteInsert(QuestBoardDTO qdto);
 }
