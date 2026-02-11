@@ -20,17 +20,17 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web'   // ⭐ 변경
 	//implementation 'org.springframework.boot:spring-boot-starter-webmvc'
 	
 	// Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	
 	// Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
-	implementation("com.mysql:mysql-connector-j")
+    implementation("com.mysql:mysql-connector-j")
 	
 	// Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
-	implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 	
 	// Source: https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:4.0.1")

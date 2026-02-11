@@ -23,12 +23,14 @@
 			<tr height="40" th:each="li, stat : ${list}">
 				<td th:text="${stat.size - stat.index}"></td>
 				<td style="text-align:left;">
+					<img th:if="${li.upload1 != null}" th:src="@{/upload/{img}(img = ${li.upload1})}" width="50" height="50" style="border:1px solid #ccc;" />
+			       	<img th:if="${li.upload2 != null}" th:src="@{/upload/{img}(img = ${li.upload2})}" width="50" height="50" style="border:1px solid #ccc;" />
 			        <!-- 답글인 경우 -->
 			        <span th:if="${li.re_step == 2}"
 			             th:style="'padding-left: 20px'">
 			            ↳[re]
 			        </span>
-			        <a th:href="@{/board/detail(num=${li.num})}"
+			        <a th:href="@{/board/detail(num=${li.num}, ref=${li.ref}, is_answered = ${li.is_answered})}"
 			           th:text="${li.subject}"></a>
 			    </td>
 				<td th:text="${li.writer}"></td>

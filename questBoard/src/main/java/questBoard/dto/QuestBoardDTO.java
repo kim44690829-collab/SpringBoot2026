@@ -15,8 +15,28 @@ public class QuestBoardDTO {
 	private int re_step;
 	private int readcount; 
 	private String content;
+	private int is_answered;
+	private String upload1;
+	private String upload2;
 	
-	
+	public String getUpload1() {
+		return upload1;
+	}
+	public void setUpload1(String upload1) {
+		this.upload1 = upload1;
+	}
+	public String getUpload2() {
+		return upload2;
+	}
+	public void setUpload2(String upload2) {
+		this.upload2 = upload2;
+	}
+	public int getIs_answered() {
+		return is_answered;
+	}
+	public void setIs_answered(int is_answered) {
+		this.is_answered = is_answered;
+	}
 	public int getNum() {
 		return num;
 	}

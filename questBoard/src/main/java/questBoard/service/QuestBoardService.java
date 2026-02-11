@@ -17,4 +17,10 @@ public interface QuestBoardService {
 	
 	// 답글
 	public void reWriteInsert(QuestBoardDTO qdto);
+	
+	// 답변여부
+	public void ansChc(QuestBoardDTO qdto);
+	
+	// 원글의 답변 여부를 바꾸면서 답변을 insert
+	public void ansProcess(QuestBoardDTO qdto);
 }

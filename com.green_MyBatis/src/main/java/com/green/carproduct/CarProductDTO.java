@@ -1,22 +1,12 @@
 package com.green.carproduct;
 
 public class CarProductDTO {
-	private int no; // 자동차 식별자 
-	private String carName; // 자동차 이름
+	private int no;  // -- 자동차 식별자
+	private String carName; // -- 자동차 이름
 	private int price; // 자동차 가격
-	private String company; // 자동차 회사
-	private String img; // 자동차 이미지
+	private String company; //자동차 회사
+	private String img; //자동차 이미지
 	private String info; // 자동차 설명
-	
-	private String publicService;
-	
-	public String getPublicService() {
-		return publicService;
-	}
-	public void setPublicService(String publicService) {
-		this.publicService = publicService;
-	}
-	
 	
 	
 	public int getNo() {

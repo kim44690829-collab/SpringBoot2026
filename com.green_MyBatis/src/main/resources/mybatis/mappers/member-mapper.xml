@@ -1,38 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- namespace = "연결할 인터페이스인 MemberMapper의 패키지 경로를 넣고 .MemberMapper를 붙여준다." -->
+<!-- namespace="MemberMapper의 패키지 경로 복사 붙이기 할 것.인터페이스이름" -->
 <mapper namespace="com.green.member.mapper.MemberMapper">
-	
-	<!-- insert / delete / update 는 resultType을 사용하지 않는다. => 한 행의 결과를 자동으로 int로 반환해주기때문 -->
-	<insert id="insertMember" parameterType="MemberDTO">
-		INSERT INTO user_member(id, pw, mail, phone) VALUES(#{id}, #{pw}, #{mail}, #{phone})
-	</insert>
-	
-	<!-- select문은 resultType을 사용한다. -->
-	<select id="isMember" resultType="boolean" parameterType="String">
-		SELECT COUNT(*) FROM user_member WHERE id = #{id}
-	</select>
-	
-	<select id="allSelectMember" resultType="MemberDTO">
-		SELECT * FROM user_member;
-	</select>
-	
-	<select id="oneSelectMember" resultType="MemberDTO" parameterType="String">
-		SELECT * FROM user_member WHERE id=#{id}
-	</select>
-	
-	<update id="updateMember" parameterType="MemberDTO">
-		UPDATE user_member SET mail=#{mail}, phone=#{phone} WHERE id=#{id}
-	</update>
-	
-	<select id="getPass" resultType="String" parameterType="String">
-		SELECT pw FROM user_member WHERE id=#{id}
-	</select>
-	
-	<delete id="deleteMember" parameterType="String">
-		DELETE FROM user_member WHERE id=#{id}
-	</delete>
-	
+
+<!-- public int insertMember(MemberDTO mdto); -->
+<!-- insert / delete / update 문은 resultType를 사용하지 않는다. -->
+<!-- insert / delete / update 문은 한 행의 결과를 int 반환한다 -->
+
+<insert id="insertMember" parameterType="MemberDTO">
+	INSERT INTO user_member(id,pw,mail,phone) 
+	VALUES(#{id},#{pw},#{mail},#{phone})
+</insert>
+
+<!-- select문은 resultType을 정의 한다. -->
+<!-- public boolean isMember(String id); -->
+<select id="isMember" parameterType="String" resultType="boolean">
+	SELECT COUNT(*) FROM user_member WHERE id=#{id}
+</select>
+
+
+<!-- public List<MemberDTO> allSelectMember(); -->
+<select id="allSelectMember" resultType="MemberDTO">
+	SELECT * FROM user_member
+</select>
+
+<!-- public MemberDTO oneSelectMember(String id); -->
+<select id="oneSelectMember" parameterType="String" 
+resultType="MemberDTO">
+  SELECT * FROM user_member WHERE id=#{id}
+</select>
+
+<!-- public int updateMember(MemberDTO mdto); -->
+<update id="updateMember" 
+parameterType="MemberDTO">
+  UPDATE user_member SET mail=#{mail}, phone=#{phone} WHERE id =#{id}
+</update>
+
+ <!-- public String getPass(String id); -->
+<select id="getPass" parameterType="String" resultType="String">
+  SELECT pw FROM user_member WHERE id=#{id}
+</select>
+
+<!-- public int deleteMember(String id);  -->
+<delete id="deleteMember" 
+ parameterType="String">
+  DELETE FROM user_member WHERE id=#{id}
+ </delete>
+
+
 </mapper>

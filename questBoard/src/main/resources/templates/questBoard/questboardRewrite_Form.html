@@ -8,7 +8,7 @@
 <body>
 	<div class="container">
 	<h2>답글 작성</h2>
-		<form th:action="@{/board/reWritePro}" method="POST">
+		<form th:action="@{/board/reWritePro(num = ${num})}" method="POST">
 			<table width="700" border="1">
 				<tr height="40">
 					<td>

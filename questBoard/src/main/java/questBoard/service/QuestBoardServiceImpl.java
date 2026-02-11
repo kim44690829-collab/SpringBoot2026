@@ -38,6 +38,18 @@ public class QuestBoardServiceImpl implements QuestBoardService{
 		questBoardMapper.reWriteInsert(qdto);
 	}
 
+	@Override
+	public void ansChc(QuestBoardDTO qdto) {
+		System.out.println("QuestBoardServiceImpl : ansChc() 메서드 확인");
+		questBoardMapper.ansChc(qdto);
+	}
+
+	@Override
+	public void ansProcess(QuestBoardDTO qdto) {
+		questBoardMapper.ansChc(qdto);
+		questBoardMapper.reWriteInsert(qdto);
+	}
+
 	
 	
 }

@@ -8,161 +8,136 @@ import org.springframework.stereotype.Service;
 
 import com.green.member.mapper.MemberMapper;
 
-// @Service 역할 
-// controller -> service 한테 DAO 메서드 찾았어? 라고 물어봄
-// service -> DAO 한테 DAO 메서드 있어? 라고 물어봄
-// DAO -> DB 있는지 찾아보고 있으면 찾아옴
-// DB 에서 id, pw값을 들고 -> DAO -> service의 메서드로 보냄
-// service -> controller에게 id, pw 보냄 
+// controller -> service : DAO 메소드 찾아있어 
+// DAO야 메소드 있어 -> DB에서 찾아옴
+// DB -> id, pw값들고  -> DAO로 보냄 -> service의 메소드로 보냄
+// -> controller에게 id, pw 찾아서 보냄
 @Service
 public class MemberService {
-	
-	// id 중복체크, 성공, 실패 상수변수 정의
-	// 회원가입의 중복을 확인하는 상수변수
-	public final static int user_id_already_exit = 0;
-	// 회원가입 성공여부를 확인하는 상수
+
+	// id중복체크, 성공, 실패 상수변수 정의 
+	// 회원가입의 중복을 확인하는 상수
+	public final static int user_id_alreday_exit = 0;
+	// 회원가입의 성공여부를 확인하는 상수
 	public final static int user_id_success = 1;
-	// 회원가입 실패 확인하는 상수
+	// 회원가입의 실패를 확인하는 상수
 	public final static int user_id_fail = -1;
 	
-	// MemberDAO DI
+	//MemberDAO도 DI를 정의한다.
 //	@Autowired
 //	MemberDAO memberdao;
 	
-	// 위의 memberdao 대신 memberMapper로 변경
+	// MemberDAO 대신 MemberMapper 주입받는다.
 	@Autowired
-	MemberMapper memberMapper;
+	private MemberMapper memberMapper; 
 	
-	// PasswordEncoder 객체도 DI (의존 객체)를 정의한다.
+	//PasswordEncoder객체도 DI(의존객체)를 정의한다.
 	@Autowired
 	PasswordEncoder passwordEncoder;
+
 	
-	// 회원 전체 목록 출력하는 메서드
-	public List<MemberDTO> memberAll(){
-		System.out.println("MemberService : memberAll() 매서드 확인");
+	//회원 전체 목록 출력하는 메소드
+	public List<MemberDTO> allListMember(){
 		return memberMapper.allSelectMember();
 	}
 	
-	// 회원가입이 제대로 되었는지, 실패했는지 예외처리
+	
+	//회원가입이 제대로 되었는지, 혹은 회원가입이 실패했는지 예외처리
 	public int signupConfirm(MemberDTO mdto) {
-		System.out.println("MemberService : signupConfirm() 매서드 확인");
+		System.out.println("MemberService signupConfirm()메소드 확인");
 		
-		// 회원가입 중복체크
+		//회원가입 중복체크
+		//id 없음 => flase
 		boolean isMember = memberMapper.isMember(mdto.getId());
-		
-		// 회원가입 중복체크 통과
+		//회원가입 중복체크 통과했다면
 		if(isMember == false) {
-			// ------------2026-01-29 암호화 추가
-			// DB에 회원정보가 추가되는 부분 => 암호화가 이루어져야한다.
-			// 문자인 pw를 암호화된 비밀번호로 변환해주는 코드
-			// passwordEncoder.encode(암호화하고싶은 필드명 입력);
-			// Encode : 암호화 / 인간언어 -> 기계어
-			// Decode : 복호화 / 기계어 -> 인간언어
-			String encodepw =  passwordEncoder.encode(mdto.getPw());
 			
-			// 암호화된 encodepw를 mdto에 넣어서 수정해야한다.
+			
+			// 문자인 pw를 암호화된 비밀번호로 변화해주는 코드
+			// passwordEncoder.encode(null)안에 암호화 하고싶은 필드명 입력
+			// Encode(암호화) : 인간언어 -> 기계어
+			// Decode(복호화) : 기계어 -> 인간언어
+			String encodepw = passwordEncoder.encode(mdto.getPw());
+			
+			// 암호화된 encodepw를 mdto.getPw() => 수정
 			mdto.setPw(encodepw);
 			
-			// 중복된 아이디가 존재하지 않을 경우 DB에 추가/삽입되어야한다.
-			int result = memberMapper.insertMember(mdto); 
-			if(result > 0) {
-				return user_id_success; // 가입 성공 -> result = 1;
+			// 중복된 아이디가 존재하지 않을 때 DB에 회원의 정보가 추가된다.
+			// DB에 회원정보가 추가되는 부분 => 암호화가 이루어져야 한다.
+			int result = memberMapper.insertMember(mdto);
+			if(result > 0 ) {
+				return user_id_success; // result = 1
 			}else {
-				return user_id_fail; // 가입 실패 -> result = -1;
+				return user_id_fail; // result = -1
 			}
 		}else {
 			// 중복된 아이디가 존재할 때
-			return user_id_already_exit; // 중복 아이디 -> result = 0;
+			return user_id_alreday_exit; // result = 0;
 		}
 	}
-	
-	// --------------------------------- 2026-01-27 서비스 로직 작성--------------------------------------------------
-	// 한 사람의 정보를 검색하는 서비스로직
+
+	//----------------- 2026년 1월 27일 서비로직 작성 시작 부분 ------------------
 	public MemberDTO oneSelect(String id) {
-		System.out.println("MemberService : oneSelect() 매서드 확인");
+		System.out.println("MemberService oneSelect()메소드 확인");
 		return memberMapper.oneSelectMember(id);
 	}
 	
-	// 암호화된 DB를 복호화하여 로그인하는 메서드
-	public MemberDTO loginConfirm(MemberDTO mdto) {
-		System.out.println("MemberService : loginConfirm() 매서드 확인");
-		
-		// 1. DB에서 해당 정보의 id 가져오기
-		MemberDTO dbMember = memberMapper.oneSelectMember(mdto.getId());
-		
-		// 2. DB에서 꺼내온 id의 비밀번호와 입력한 비밀번호가 일치한지 비교
-		// 2번을 하기위해 암호화된 비밀번호를 복호화 => PasswordEncoder.matches(사용자가 입력한 값, DB에 저장된 암호문)
-		if(dbMember != null && dbMember.getPw() != null) {
-			// 복호화 후 비교
-			if(passwordEncoder.matches(mdto.getPw(), dbMember.getPw())) {
-				// 로그인 성공
-				return dbMember;
-			}
-		}
-		// 로그인 실패
-		return null;
-	}
-	
-	// 한 사람의 패스워드만 출력하는 메서드
+	// 한 사람의 패스워드만 출력하는 메소드
 	public String onePass(String id) {
-		System.out.println("MemberService : onePass() 매서드 확인");
-		// void가 아닌 이상 데이터 타입이 존재한다는 것은 return이 필요함
+		System.out.println("MemberService onePass()메소드 확인");
+		// void가 아닌이상 데이터 타입이 존재하면 반드시 return 반환값이 필요
 		return memberMapper.getPass(id);
 	}
 	
-	// 개인 한 사람의 정보를 수정하는 메서드
+	// 개인 한사람의 정보를 수정하는 메소드
 	// DB의 패스워드와 같은지 비교
-	// DB의 패스워드와 내가 입력한 패스워드가 같다 => 실행문
-	// DB의 패스워드와 내가 입력한 패스워드가 다르다 => 실행문
+	// DB의 패스워드와 내가 입력한 패스워드가 같을 때 실행문
+	// DB의 패스워드와 내가 입력한 패스워드가 다를 때 실행문
 	public boolean modifyMember(MemberDTO mdto) {
-		System.out.println("MemberService : modifyMember() 매서드 확인");
+		System.out.println("MemberService modifyMember()메소드 확인");
+		//1. DB조회
+		String dbPass = memberMapper.getPass(mdto.getId());
 		
-		// 1. DB 조회
-		String DBpass = memberMapper.getPass(mdto.getId());
-		
-		if(DBpass.equals(mdto.getPw()) && DBpass != null) {
-			// 내가 입력한 패스워드가 DB에 존재한다.
+		//2. if 비교
+		if(dbPass.equals(mdto.getPw()) && dbPass != null) {
+			// 내가 입력한 DB의 패스워드가 존재할 때
 			return memberMapper.updateMember(mdto) == 1;
 		}else {
-			// 내가 입력한 패스워드가 DB에 존재하지 않을때
+			// 내가 입력한 DB의 패스워드가 존재하지 않을 때
 			return false;
 		}
 	}
 	
-	// 한 회원의 정보만 삭제하는 메서드
+	// 개인 한사람의 정보를 삭제하는 메소드
 	public boolean oneDelete(String id) {
-		System.out.println("MemberService : oneDelete() 매서드 확인");
-		// 현재 deleteMember()라는 DAO의 결과값이 result에 0(삭제안됨) or 1(삭제됨) 로 담긴다.
-		// memberdao.deleteMember(id) => 1(삭제됨) == 1 => 삭제됐다. (true)
+		System.out.println("MemberService oneDelete()메소드 확인");
+		 // 현재 deleteMmeber() DAO의 결과 값이 result=0 또는 1
+		// 삭제되면 1, 아니면 0
+		// memberdao.deleteMember(id) => 1 == 1 => true
+		// memberdao.deleteMember(id) => 0 == 1 => false
 		return memberMapper.deleteMember(id) == 1;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 암호화된 DB를 복호화하여 로그인하는 메소드
+	public MemberDTO loginConfirm(MemberDTO mdto) {
+		System.out.println("MemberService loginConfirm()메소드 확인");
+		
+		// 1. DB에서 해당정보의 id가져오기
+		MemberDTO dbMember = memberMapper.oneSelectMember(mdto.getId());
+		
+		// 2. DB에서 꺼내온 id의 비밀번호와 입력한 값이 일치 하는지확인
+		// 암호화된 데이터를 PasswordEncoder.matches(사용자 입력한 문, DB에 저장된 암호문)
+		// PasswordEncoder.matches() => 복호화한 것이다.
+		if(dbMember != null && dbMember.getPw() != null) {
+			// 복호화 시켜 비교하는 중..
+			if(passwordEncoder.matches(mdto.getPw(), dbMember.getPw())) {
+				// 로그인 성공한경우
+				return dbMember;
+			}
+		}
+		return null; // 로그인 실패 
+	}
 	
 	
 }
+

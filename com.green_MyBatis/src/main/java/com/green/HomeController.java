@@ -6,29 +6,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.green.board.PageHandler;
 import com.green.carproduct.CarProductDTO;
 import com.green.carproduct.CarProductService;
 
 @Controller
 public class HomeController {
-
+	
 	@Autowired
 	CarProductService carProductservice;
 	
-	// http://localhost:8090 
-	// http://localhost:8090/ 
 	@GetMapping({"","/"})
 	public String home(Model model) {
-		System.out.println("HomeController 확인");
-		
-		// List<CarProductDTO>
-		// carProductservice.getAllCarProduct() -> DB의 한 행씩 꺼내서 ArrayList에 넣는 역할
-		List<CarProductDTO> carlist = carProductservice.getAllCarProduct();
-		
-		// model.addAttribute()에 담아서 home으로 보낸다.
-		// 단 model은 한번만 담아서 내보내면 다른 페이지로는 못감
-		model.addAttribute("carlist", carlist.get(0).getPublicService());
-		return "home";
+	 System.out.println("HomeController home()");		
+	 
+	 // List<CarProductDTO>
+	 // carProductservice.getAllCarProduct()의 역활은
+	 // '21', 'Veyron', '2000000000', 'Bugatti', '1.jpg', '고성능 슈퍼카입니다.'
+	 // 위의 자료를 DB에서 꺼내와 List =>  ArrayList<>배열 저장한다.
+	 List<CarProductDTO> carlist = carProductservice.getAllCarProduct();
+	 
+	 // carlist를 model.addAttribute()로 담아서 home.html로 내보낸다.
+	 // 단, model은 한 번 담아내보내면 다른 페이지로 이동해도 자료를 가지고 갈 수 없다.
+	 model.addAttribute("carlist",carlist);
+	 
+	  return "home";
 	}
 }
+
+

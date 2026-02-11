@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.com">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" th:href="@{/css/common.css}">
-<link rel="stylesheet" th:href="@{/css/home.css}">
-<link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
-<link rel="stylesheet" th:href="@{/css/member.css}">
-<script th:src="@{/js/member.js}"></script>
-<title>Insert title here</title>
+<title th:replace="~{/include/title.html::title}"></title>
+	<Link rel="stylesheet" th:href="@{/css/common.css}">
+	<Link rel="stylesheet" th:href="@{/css/header_nav_footer.css}">
+	<Link rel="stylesheet" th:href="@{/css/member.css}">
+	
 </head>
 <body>
 	<header th:replace="~{/include/header_nav_footer.html::header}"></header>
@@ -15,18 +14,21 @@
 	
 	<section>
 		<div id="section_wrap">
-			<div class="word"><h1>회원 가입 결과</h1></div>
+		    <div class="word">
+		       회원 가입 결과
+		    </div>
 			<div class="content">
-				<div th:if="${result > 0}" align="center">
-					<h1>회원가입 성공</h1>
-				</div>
-				<div th:if="${result <= 0}" align="center">
-					<h1>회원가입 실패</h1>
-				</div>				
+			  <div th:if="${result > 0}" align="center">
+			     회원가입 성공!
+			  </div>
+			  <div th:if="${result <= 0}" align="center">
+			     회원가입 실패!
+			  </div>
 			</div>
 		</div>
 	</section>
 	
-	<footer th:replace="~{/include/header_nav_footer.html::footer}" ></footer>
+	<nav th:replace="~{/include/header_nav_footer.html::footer}"></nav>
 </body>
 </html>
+

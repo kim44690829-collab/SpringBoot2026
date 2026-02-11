@@ -6,9 +6,9 @@
 	
 	<!-- public void questBoardInsert(QuestBoardDTO qdto); -->
 	<insert id="questBoardInsert" parameterType="qDTO">
-		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, content)
+		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, content, is_answered, upload1, upload2)
 		VALUES(#{writer}, #{email}, #{subject},#{password},
-		(SELECT IFNULL(MAX(q.ref)+1, 1) FROM questBoard q), 1, #{content})
+		(SELECT IFNULL(MAX(q.ref)+1, 1) FROM questBoard q), 1, #{content}, 0, #{upload1}, #{upload2})
 	</insert>
 	
 	<!-- public List<QuestBoardDTO> boardAllSelect(); -->
@@ -23,7 +23,13 @@
 	
 	<!-- public void reWriteInsert(); -->
 	<insert id="reWriteInsert" parameterType="qDTO">
-		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, content)
-		VALUES(#{writer}, #{email}, #{subject}, #{password}, #{ref}, 2, #{content})
+		INSERT INTO questBoard(writer, email, subject, password, ref, re_step, content, is_answered)
+		VALUES(#{writer}, #{email}, #{subject}, #{password}, #{ref}, 2, #{content}, 1)
 	</insert>
+	
+	<!-- public int ansChc(QuestBoardDTO qdto); -->
+	<update id="ansChc" parameterType="qDTO">
+		UPDATE questBoard SET is_answered = 1 WHERE num = #{num}
+	</update>
+	
 </mapper>
