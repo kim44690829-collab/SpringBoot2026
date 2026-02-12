@@ -37,42 +37,20 @@ export default function Home(){
                     <div className="carList">
                         {carlist.length > 0 ? (
                             // map 으로 반복하여 목록 출력
-                            carlist.map((car) => {
-                                
-                                    const infoArray = JSON.parse(car.info);
-
+                            carlist.map((car) => (
+                                <>
+                                    <div className="carItem" key={car.no}>
+                                    <img src={`/img/car/${car.img}`} alt={car.carName} />
+                                    <div className="carName">
+                                        {car.carName}
+                                    </div>
+                                    <div className="carPrice">
+                                        {Number(car.price).toLocaleString()}
+                                    </div>
                                     
-
-                                    return (
-                                        <>
-                                            <div className="carItem" key={car.no}>
-                                            <img src={`/img/car/${car.img}`} alt={car.carName} />
-                                            <div className="carName">
-                                                {car.carName}
-                                            </div>
-                                            <div className="carPrice">
-                                                {Number(car.price).toLocaleString()}
-                                            </div>
-                                            
-                                            </div>
-                                            <div key={car.no}>
-                                                {infoArray.map((item, index) => (
-                                                    <span key={index}>{item}..</span>
-                                                ))}
-                                            </div>
-                                        </>
-                                    );
-                                    
-                                    {/* {car.info.map((item, index) => (
-                                        <span key={index}>{item}</span>
-                                    ))} */}
-                                    {/* <div key={car.no}>
-                                        {car.info.map((item, index) => (
-                                            <span key={index}>{item}</span>
-                                        ))}
-                                    </div> */}
-                                
-                            })
+                                    </div>
+                                </>
+                            ))
                         ) : (<p>등록된 차량이 존재하지 않습니다.</p>)}
                     </div>
                 </div>
