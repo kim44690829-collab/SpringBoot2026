@@ -22,5 +22,7 @@ public class CarProductService {
 		return carProductmapper.getAllCarProduct();
 	}
 	
-	
+	public void insertCarProduct(CarProductDTO dto) {
+		carProductmapper.insertCarProduct(dto);
+	}
 }

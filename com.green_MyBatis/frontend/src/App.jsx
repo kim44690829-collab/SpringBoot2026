@@ -12,7 +12,7 @@ import SignupResult from './pages/SignupResult';
 import Login from './pages/Login';
 import MyInfo from './pages/MyInfo';
 import Modify from './pages/Modify';
-
+import Product from './pages/Product';
 
 function App() {
 
@@ -33,6 +33,7 @@ function App() {
                 <Route path='/member/login' element={<Login/>} />
                 <Route path='/member/memberInfo' element={<MyInfo/>} />
                 <Route path='/member/modify' element={<Modify/>} />
+                <Route path='/cars/insert' element={<Product/>} />
             </Routes>
           </main>
           <Footer />

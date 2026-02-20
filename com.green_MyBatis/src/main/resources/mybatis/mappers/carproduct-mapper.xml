@@ -10,6 +10,12 @@
   	SELECT * FROM carProduct
   </select>
   
+  <!-- public void insertCarProduct(CarProductDTO dto); -->
+  <insert id="insertCarProduct" parameterType="carDTO">
+  	INSERT INTO carProduct (carName, price, company, img, info) 
+  	VALUES(#{carName}, #{price}, #{company}, #{img}, #{info})
+  </insert>
+  
 </mapper>
 
 
